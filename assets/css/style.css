@@ -1,0 +1,32 @@
+.container{
+	padding-left: 20px;
+}
+h1{
+	line-height: 45%;
+	opacity: 0.89;
+}
+.card-panel{
+	padding-bottom: 0;
+	margin:auto;
+}
+.small{
+	font-size: 15px !important;
+}
+.left{
+	border-top-left-radius: 50% !important;
+}
+input{
+	border-color: white !important;
+}
+i{
+	color: white !important;
+}
+#search:hover{
+	text-decoration: none;
+}
+
+@media only screen and (min-width: 993px){
+.container{
+	width: 88%;
+}
+}
