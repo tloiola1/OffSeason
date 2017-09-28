@@ -17,6 +17,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// create global database variable
 var gDatabase = firebase.database();
 
 /*
@@ -46,20 +47,23 @@ function generateUUID () { // Public Domain/MIT
 Function called on page load to either retrieve the cookie or create one
 
 Parameters: none
-Returns: string (the cookie)
+Returns: string (the cookie as stringified JSON)
  */
 function setUserCookie () {
     // check if a cookie already exists in the browser
     // getter
     if (document.cookie) {
-        return document.cookie;
+        return JSON.parse(document.cookie);
     }
     // if it doesn't then make one
     // setter
     else {
-        var tUUID = generateUUID();
-        document.cookie = `uuid=${tUUID};`;
-        return document.cookie;
+        var cookieObject = {
+            uuid: generateUUID()
+        };
+
+        document.cookie = JSON.stringify(cookieObject);
+        return JSON.parse(document.cookie);
     }
 }
 
@@ -67,14 +71,18 @@ function setUserCookie () {
 Write to the user's DB entry
 
 Parameters: pCookie (the userID cookie), pData (JSON object of data)
+Returns:
  */
-function setUserData (pCookie, pData) {
-
+function updateUserData (pUUID, pData) {
+    gDatabase.ref().child(`users/${pUUID}`).update(pData);
 }
 
 // ------------------------------------------------
 //                  ON PAGE LOAD
 // ------------------------------------------------
 
-// obtain userID cookie
+// obtain userID cookie and set up global data object
 var gUserCookie = setUserCookie();
+var gUUID = gUserCookie.uuid;
+
+updateUserData(gUUID, {otherField: 'a new field'});
