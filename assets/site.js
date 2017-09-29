@@ -17,6 +17,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// create global database variable
 var gDatabase = firebase.database();
 
 /*
@@ -44,37 +45,52 @@ function generateUUID () { // Public Domain/MIT
 
 /*
 Function called on page load to either retrieve the cookie or create one
-
 Parameters: none
-Returns: string (the cookie)
+Returns: string (the cookie as stringified JSON)
  */
 function setUserCookie () {
+    // date for created or last visited
+    var rightNow = new Date();
+
     // check if a cookie already exists in the browser
     // getter
     if (document.cookie) {
-        return document.cookie;
+        // get UUID and update the lastVisit property of the user
+        var tUUID = JSON.parse(document.cookie);
+        updateUserData(tUUID.uuid, {lastVisit: rightNow});
+
+        return JSON.parse(document.cookie);
     }
     // if it doesn't then make one
     // setter
     else {
-        var tUUID = generateUUID();
-        document.cookie = `uuid=${tUUID};`;
-        return document.cookie;
+        // create the cookie object
+        var tCookieObject = {
+            uuid: generateUUID()
+        };
+
+        // add created property to the user
+        updateUserData(tCookieObject.uuid, {created: rightNow, lastVisit: rightNow});
+
+        //  stringify the cookie, set it, then return it
+        document.cookie = JSON.stringify(tCookieObject);
+        return JSON.parse(document.cookie);
     }
 }
 
 /*
 Write to the user's DB entry
-
 Parameters: pCookie (the userID cookie), pData (JSON object of data)
+Returns: none
  */
-function setUserData (pCookie, pData) {
-
+function updateUserData (pUUID, pData) {
+    gDatabase.ref().child(`users/${pUUID}`).update(pData);
 }
 
 // ------------------------------------------------
 //                  ON PAGE LOAD
 // ------------------------------------------------
 
-// obtain userID cookie
+// obtain userID cookie and set up global data object
 var gUserCookie = setUserCookie();
+var gUUID = gUserCookie.uuid;
