@@ -1,3 +1,10 @@
+/*
+Variable Naming Notes:
+g = global (example: gDatabase)
+p = parameter
+t = temporary (example: tUUID)
+ */
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCsjGYYpplHoLB2Je-ZusAXR_5_yWMWdDk",
