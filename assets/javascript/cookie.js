@@ -85,5 +85,5 @@ Parameters: pCookie (the userID cookie), pData (JSON object of data)
 Returns: none
  */
 function updateUserData (pUUID, pData) {
-    gDatabase.ref().child(`users/${pUUID}`).update(pData);
+    gDatabase.ref().child('users/' + pUUID).update(pData);
 }
