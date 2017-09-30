@@ -8,10 +8,8 @@ $("#cards").hide();
   $("#cards").show();
   $('html, body').animate({ scrollTop: $('#cards').offset().top }, 'slow');
 
- })
- $(".card").on("click", function(){
-	$("#cards").hide();
- })
+ });
+
 
  $( function() {
     // run the currently selected effect

@@ -19,6 +19,9 @@ body{
     padding-bottom: 10px;
 }
 
+.card-image img {
+    height: 188px;
+}
 
 #calendar{
 	font-size: 25px;
