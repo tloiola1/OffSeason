@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <!DOCTYPE html>
@@ -170,3 +171,57 @@
 </body>
 </html>
 
+=======
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- jQuery 3.2.1 CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+    <!-- Firebase 4.4.0 CDN -->
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+
+    <!-- Styling CDNs / CSS files -->
+    <link rel="stylesheet" href="assets/style.css">
+
+    <title>Off Season!</title>
+
+</head>
+
+<body>
+
+    <form>
+        <label for="start-date">Start Date</label>
+        <input type="date" id="start-date">
+
+        <label for="end-date">End Date</label>
+        <input type="date" id="end-date">
+
+        <label for="region"></label>
+        <select name="region-picker" id="region">
+            <option value="domestic">Domestic</option>
+            <option value="international">International</option>
+        </select>
+
+        <button type="submit" id="search-button">Go!</button>
+    </form>
+
+
+    <!-- load JS for the site after the DOM finishes loading -->
+    <script src="assets/javascript/cookie.js"></script>
+    <script src="assets/javascript/hotwireAPI.js"></script>
+    <!--<script src="assets/javascript/weather.js"></script>-->
+
+    <!-- Main JS file, load after so all functions are defined -->
+    <script src="assets/javascript/site.js"></script>
+</body>
+</html>
+>>>>>>> dev
