@@ -1,17 +1,16 @@
- $( function() {
-    $( "#start" ).datepicker();
-    $( "#end" ).datepicker();
-  } );
+  //  $( function() {
+  //   $( "#start" ).datepicker();
+  //   $( "#end" ).datepicker();
+  // } );
 
-$("#up").hide();
+$("#cards").hide();
  $("#go").on("click", function(){
- 	$(".down").animate({height: '300px'});
-	$("#up").show();
-	$(".down").attr("style", "height: 300px");
+  $("#cards").show();
+  $('html, body').animate({ scrollTop: $('#cards').offset().top }, 'slow');
 
  })
  $(".card").on("click", function(){
-	$("#up").hide();
+	$("#cards").hide();
  })
 
  $( function() {
@@ -48,3 +47,11 @@ $("#up").hide();
       return false;
     });
   } );
+
+
+
+
+ function scrollToCards() {
+  $('html, body').animate({ scrollTop: $('#cards').offset().top }, 'slow');
+    return false;
+}

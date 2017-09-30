@@ -1,15 +1,27 @@
 body{
 	overflow-x: hidden;
+    margin-bottom: 0;
 	
 }
 .container{
-	width: 90%;
+    width: 100%;
 }
+.container-head{
+	width: 90%;
+    height: 100px;
+}
+.container-table{
+    width: 90%;
+}
+.container-cards{
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
 #calendar{
 	font-size: 25px;
-	margin:30px;
-	margin-top: 150px !important;
-	padding: 20px !important;
 }
 
 .national, .international{
@@ -20,16 +32,18 @@ body{
 	width: 288px;
 	margin: 20px;
 }
-#up{
-	height: 0;
-	bottom: 0;
-} 
-
-.card{
-	width: 100px;
+.img-responsive{
+	max-height:px;
 }
 #start .hasDateicker{
 	color: #e6be4b;
+}
+#table{
+    background-color: #3d3d3d;
+    margin-top: 130px;
+}
+td, th{
+    text-align: center;
 }
  
 
@@ -113,11 +127,13 @@ th, td{
     top: -2px;
     padding: 5px;
     cursor: pointer;
+    background-color: orange !important;
 }
  
 .ui-datepicker-prev {
     left: 0;
     padding-left: 0;
+    color:red;
 }
  
 .ui-datepicker-next {
@@ -131,11 +147,10 @@ th, td{
     width: 5px;
     height: 10px;
     text-indent: -9999px;
- 
-    background-image: url(../img/arrows.png);
+    background-color: orange;
 }
  
-.ui-datepicker-prev span { background-position: 0px 0px; }
+.ui-datepicker-prev span { background-position: 0px 0px; color: white;background-color: orange;}
  
 .ui-datepicker-next span { background-position: -5px 0px; }
  
