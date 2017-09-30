@@ -85,38 +85,5 @@ Parameters: pCookie (the userID cookie), pData (JSON object of data)
 Returns: none
  */
 function updateUserData (pUUID, pData) {
-<<<<<<< HEAD:assets/site.js
-    gDatabase.ref().child(`users/${pUUID}`).update(pData);
-}
-
-// ------------------------------------------------
-//                  ON PAGE LOAD
-// ------------------------------------------------
-
-// obtain userID cookie and set up global data object
-var gUserCookie = setUserCookie();
-var gUUID = gUserCookie.uuid;
-
-// jQuery date picker for calendar
-$(document).ready(function() {
-    $("#start").datepicker();
-    $("#end").datepicker();
-});
-
-
-//runs function to grab weather for user selected city
-
-$(document).on('click', '#cityImg', cityWeather);
-
- userCity = $('#').val().trim();
-
-function cityWeather () {
-    var queryURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + userCity + '&APPID=c29d220ad91825204d613bb66ea4cbdf&cnt=16';
-    var weatherQuery = $.ajax({url: queryURL, method: 'Get'});
-    weatherQuery.done();
-    console.log('???'+ weatherQuery);
-}
-=======
     gDatabase.ref().child('users/' + pUUID).update(pData);
 }
->>>>>>> dev:assets/javascript/cookie.js
