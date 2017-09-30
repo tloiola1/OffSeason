@@ -5,7 +5,6 @@ p = parameter
 t = temporary (example: tUUID)
  */
 
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCsjGYYpplHoLB2Je-ZusAXR_5_yWMWdDk",
@@ -19,8 +18,8 @@ firebase.initializeApp(config);
 
 // create global database variable
 var gDatabase = firebase.database();
-var userCity = 'Orlando';
-var countryCode = '';
+
+
 
 /*
 Generates UUID based on the current Date / performance clock
@@ -86,6 +85,7 @@ Parameters: pCookie (the userID cookie), pData (JSON object of data)
 Returns: none
  */
 function updateUserData (pUUID, pData) {
+<<<<<<< HEAD:assets/site.js
     gDatabase.ref().child(`users/${pUUID}`).update(pData);
 }
 
@@ -116,3 +116,7 @@ function cityWeather () {
     weatherQuery.done();
     console.log('???'+ weatherQuery);
 }
+=======
+    gDatabase.ref().child('users/' + pUUID).update(pData);
+}
+>>>>>>> dev:assets/javascript/cookie.js
