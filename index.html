@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>offseason</title>
+
+    <title>Off Season!</title>
+
   	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Style Section -->
+    <!-- Materialize 0.100.2 CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- In-house CSS -->
 	<link rel="stylesheet" href="assets/css/style.css">
-	 <!-- jQuery 3.2.1 CDN -->
+
+    <!-- jQuery 3.2.1 CDN -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.min.js"
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -19,163 +22,58 @@
     <!-- Firebase 4.4.0 CDN -->
     <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 
-	<script>
-  $( function() {
-    $( "#start" ).datepicker();
-    $( "#end" ).datepicker();
-  } );
-  </script>
+    <!-- Moment JS CDN -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
 
 </head>
-<body style="background-image: url(assets/images/atl4.jpg);">
-	<div class="container container-head"><div class="row"></div></div>
-		<div class="container">
-			<div id="calendar" class="row center calendar">
-				 <span class="">
-				 	<strong class="start white-text btn btn-large orange lighten-1 hoverable">
-				 		<input type="text" id="start" name="" value="" placeholder="Start">
-				 	</strong>
-				 
-				 	<strong class="end white-text btn btn-large orange lighten-1 hoverable">
-				 		<input type="text" id="end" name="" value="" placeholder="End">
-				 	</strong>
-				 </span>
-			</div>
-			<div class="row center">
-				 <span>
-				 	<strong><a id="national" class="national btn btn-large orange lighten-1 hoverable"> National</a></strong>
-				 
-				 	<strong><a id="international" class="international ational btn btn-large orange lighten-1 hoverable"> International</a></strong>
-				 </span>
-			</div>
+<body>
+    <!-- Landing Page Container -->
+    <div class="container" id="landing-page">
+        <!-- Calendar Date Pickers -->
+        <div class="row">
+            <!-- Start Date, offsets row -->
+            <div class="col s5 offset-s1 m3 offset-m3">
+                <input type="text" id="start-date" class="datepicker"
+                       placeholder="Click to Select Start Date">
+            </div>
+            <!-- End Date -->
+            <div class="col s5 m3">
+                <input type="text" id="end-date" class="datepicker"
+                       placeholder="Click to Select End Date">
+            </div>
+        </div>
+        <!-- National vs Domestic -->
+        <div class="row center">
+            <div class="col s8 offset-s2 m6 offset-m3">
+                <button id="domestic"
+                   class="region btn btn-large orange lighten-1 hoverable"
+                        value="domestic">Domestic</button>
+                <button id="international"
+                   class="region btn btn-large orange lighten-1 hoverable"
+                        value="international">International</button>
+            </div>
+        </div>
+    </div>
 
-		
-			<div class="row center">
-				 <span>
-				 	<strong><a id="go" class="go teal white-text btn btn-large darkpurple lighte-2 hoverable">GO</a></strong>
-				 </span>
-			</div>
-	</div>		
-	<div class="container container-table">
-		<div class="row center-align">
-			<div id="table">
-				<table>
-			        <thead>
-			          <tr>
-			              <th>City</th>
-			              <th>Price</th>
-			              <th>Activities</th>
-			          </tr>
-			        </thead>
-
-			        <tbody>
-			          <tr>
-			            <td>Atlanta</td>
-			            <td>$100</td>
-			            <td>Lots of fun</td>
-			          </tr>
-			          <tr>
-			            <td>Jacksonville FL</td>
-			            <td>$100</td>
-			            <td>Lots of fun</td>
-			          </tr>
-			          <tr>
-			            <td>Cancun</td>
-			            <td>$100</td>
-			            <td>Lots of fun</td>
-			          </tr>
-			        </tbody>
-		     	</table>
-			</div>
-		</div>
-	</div>
-	<div id="cards" style="background-color: black">
+    <!-- Location Card Container -->
+    <!-- Wrapper div to get out of Materialize's width -->
+	<div id="card-wrapper">
+        <!-- Location Card containers -->
 		<div class="container container-cards">
-			<div class="row">
-				<div class="col s12 l6">
-				    	<div class="card horizontal">
-				     		<div class="card-image">
-				        		<img src="assets/images/atl3.jpg">
-				     		 </div>
-				      		<div class="card-stacked">
-				        		<div class="header">
-				          			<h5>Atlanta</h5>
-				        		</div>
-				        		<div class="card-content">
-				          			<p>$100</p>
-				        		</div>
-				        		<div class="card-action">
-				          			<a href="#">A link</a>
-				       			 </div>
-				     		 </div>
-				    	</div>
-				  	</div>
-				<div class="col s12 l6">
-				    	<div class="card horizontal">
-				     		<div class="card-image">
-				        		<img src="assets/images/atl2.jpg">
-				     		 </div>
-				      		<div class="card-stacked">
-				      			<div class="header">
-				          			<h5>Jacksonvile Fl</h5>
-				        		</div>
-				        		<div class="card-content">
-				          			<p>$100</p>
-				        		</div>
-				        		<div class="card-action">
-				          			<a href="#">A link</a>
-				       			 </div>
-				     		 </div>
-				    	</div>
-				  	</div>
-				<div class="col s12 l6">
-				    	<div class="card horizontal">
-				     		<div class="card-image">
-				        		<img src="assets/images/atl5.jpg">
-				     		 </div>
-				      		<div class="card-stacked">
-				      			<div class="header">
-				          			<h5>Cancun</h5>
-				        		</div>
-				        		<div class="card-content">
-				          			<p>$100</p>
-				        		</div>
-				        		<div class="card-action">
-				          			<a href="#">A link</a>
-				       			 </div>
-				     		 </div>
-				    	</div>
-				  	</div>
-				<div class="col s12 l6">
-				    	<div class="card horizontal">
-				     		<div class="card-image">
-				        		<img src="assets/images/atl2.jpg">
-				     		 </div>
-				      		<div class="card-stacked">
-				      			<div class="header">
-				          			<h5>Jacksonvile Fl</h5>
-				        		</div>
-				        		<div class="card-content">
-				          			<p>$100</p>
-				        		</div>
-				        		<div class="card-action">
-				          			<a href="#">A link</a>
-				       			 </div>
-				     		 </div>
-				    	</div>
-				  	</div>
+			<div class="row" id="location-results">
+				<!-- Dynamically add location cards here -->
 		    </div>
 		</div>
 	</div>
 
-
-	<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+    <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="assets/javascript/app.js"></script>	
+
+    <!-- Helper Scripts -->
     <script src="assets/javascript/imgAPI.js"></script>
-	<script src="assets/javascript/cookie.js"></script>
+    <script src="assets/javascript/weather.js"></script>
     <script src="assets/javascript/hotwireAPI.js"></script>
-    <!--<script src="assets/javascript/weather.js"></script>-->
+    <script src="assets/javascript/cookie.js"></script>
 
     <!-- Main JS file, load after so all functions are defined -->
     <script src="assets/javascript/site.js"></script>
