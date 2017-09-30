@@ -5,6 +5,8 @@ p = parameter
 t = temporary (example: tUUID)
  */
 
+// Sean's API key: p4j4vytm588y332gdt8r79cp
+
 /*
 Function to make AJAX call to Hotwire API
 
