@@ -14,10 +14,10 @@ Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion 
 Returns: none
  */
 function hotwireAPI (pStart, pEnd, pRegion) {
-    // var startDate = convertDateHotwire(pStart);
-    // var endDate = convertDateHotwire(pEnd);
-    var startDate = '12/05/2016';
-    var endDate = '12/15/2016';
+    var startDate = convertDateHotwire(pStart);
+    var endDate = convertDateHotwire(pEnd);
+    startDate = '10/15/2016';
+    endDate = '10/30/2016';
     var apiKey = 'krhcyf9u4tptfayz7zq26r4k';
 
     // 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
@@ -25,7 +25,8 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         +'&apikey='+ apiKey
         +'&startdate='+ startDate
         +'&enddate='+ endDate
-        +'&travelseason=low';
+        +'&travelseason=low&limit=';
+
     console.log(hotwireURL);
 
     $.ajax({
@@ -34,31 +35,45 @@ function hotwireAPI (pStart, pEnd, pRegion) {
     }).done(
         function (response) {
             console.log(response);
-            parseHotwire(response, pRegion);
+            var tData = parseHotwire(response, pRegion);
+            buildCards(tData);
         });
+}
+
+/*
+Function to convert the date from date input to the required MM/DD/YYYY format
+
+Parameters: pDate (date string "DD MonthName, YYYY")
+Returns: date string ("MM/DD/YYYY")
+ */
+function convertDateHotwire(pDate) {
+    // create the arrays, split at the hyphen (-)
+    var dateArray = pDate.split('-');
+    return dateArray[1]+'/'+dateArray[2]+'/'+dateArray[0]
 }
 
 /*
 Function to parse the received response from the Hotwire API
 
 Parameters: pResponse (JSON response), pRegion (domestic vs international)
-Returns:
+Returns: JSON Object that is contains only what we need and is easier to navigate
  */
 function parseHotwire (pResponse, pRegion) {
     var tLocationsArray = pResponse['Result'];
     console.log(tLocationsArray);
     console.log(tLocationsArray[0]);
     console.log(tLocationsArray[0]['DestinationCity']);
+
+    var tCleanedData = {
+        blank: 'blank object for testing'
+    };
+
+    return tCleanedData;
 }
 
 /*
-Function to convert the date from date input to the required MM/DD/YYYY format
-
-Parameters: pDate (date string YYYY-MM-DD)
-Returns: date string (MM/DD/YYYY)
+Build the cards and append them to the #result-cards
  */
-function convertDateHotwire(pDate) {
-    // create the arrays, split at the hyphen (-)
-    var dateArray = pDate.split('-');
-    return dateArray[1]+'/'+dateArray[2]+'/'+dateArray[0]
+function buildCards(pData) {
+    return pData;
 }
