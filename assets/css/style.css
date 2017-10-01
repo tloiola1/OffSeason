@@ -3,41 +3,26 @@ html, body {
     height: 100%;
 	overflow-x: hidden;
     margin-bottom: 0;
-    background-image: url(../images/atl4.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: fixed no-repeat url(../images/atl4.jpg);
 }
+
 .fixed{
     position: fixed;
 }
-.row .col.l3{
-}
+
 .container{
-    width:90%;
+    width: 90%;
 }
 
 #landing-page {
     margin-top: 100px;
 }
 
-#card-wrapper {
-    background-color: black;
-    margin: 0;
-    width: 100%;
-}
-
-.container-cards {
-    width: 90%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .region {
-    margin: 20px;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 20px 0;
     width: 180px;
 }
+
 input:not([type]), 
 input[type=text]:not(.browser-default), 
 input[type=password]:not(.browser-default), 
@@ -76,20 +61,16 @@ td, th {
     padding: 0;
 }
 
-
-
-
-
+/* Media Queries for changes */
 @media screen and(max-width: 980px){
     .region {
     min-width: 160px;
-    margin: 20px;
-    margin-left: 0;
+    margin: 20px 20px 20px 0;
     }
+
     .btn, .btn-large{
     padding: 10px;
-}
-
+    }
 }
 
 @media screen and(max-width: 840px){
