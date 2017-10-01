@@ -14,24 +14,28 @@ Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion 
 Returns: none
  */
 function hotwireAPI (pStart, pEnd, pRegion) {
-    var startDate = convertDateHotwire(pStart);
-    var endDate = convertDateHotwire(pEnd);
+    // var startDate = convertDateHotwire(pStart);
+    // var endDate = convertDateHotwire(pEnd);
+    var startDate = '12/05/2016';
+    var endDate = '12/15/2016';
     var apiKey = 'krhcyf9u4tptfayz7zq26r4k';
 
-    var hotwireURL = 'http://api.hotwire.com/v1/tripstarter/hotel?format=JSON'
+    // 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
+    var hotwireURL = 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
         +'&apikey='+ apiKey
         +'&startdate='+ startDate
         +'&enddate='+ endDate
-        +'&travelseason=low&limit=10';
+        +'&travelseason=low';
+    console.log(hotwireURL);
 
     $.ajax({
         url: hotwireURL,
         method: 'GET'
     }).done(
-        parseHotwire(response, pRegion)
-    ).fail( function (err) {
-        console.log('ajax err: ' + err);
-    });
+        function (response) {
+            console.log(response);
+            parseHotwire(response, pRegion);
+        });
 }
 
 /*
@@ -41,8 +45,10 @@ Parameters: pResponse (JSON response), pRegion (domestic vs international)
 Returns:
  */
 function parseHotwire (pResponse, pRegion) {
-    var cities = pResponse.data;
-    console.log('Hotwire Response: ' + cities);
+    var tLocationsArray = pResponse['Result'];
+    console.log(tLocationsArray);
+    console.log(tLocationsArray[0]);
+    console.log(tLocationsArray[0]['DestinationCity']);
 }
 
 /*
