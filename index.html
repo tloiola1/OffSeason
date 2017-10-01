@@ -3,30 +3,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>offseason</title>
+
+    <title>Off Season!</title>
+
   	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Style Section -->
+    <!-- Materialize 0.100.2 CDN -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- In-house CSS -->
 	<link rel="stylesheet" href="assets/css/style.css">
+
+
+    <!-- jQuery 3.2.1 CDN -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
+
+    <!-- Moment JS CDN -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+
 </head>
-
 <body>
+    <!-- Landing Page Container -->
+    <div class="container" id="landing-page">
+        <!-- Calendar Date Pickers -->
+        <div class="row">
+        	<div class="fixed col l3 m3 s12 hide-on-small-only">
+	            <!-- Start Date, offsets row -->
+	                <input type="text" id="start-date" class="datepicker"
+	                       placeholder="Start Date">
+	            <!-- End Date -->
+	                <input type="text" id="end-date" class="datepicker"
+	                       placeholder="End Date">
+	        <!-- National vs Domestic -->
+	                <button id="domestic"
+	                   class="region btn btn-large orange lighten-1 hoverable center-align"
+	                        value="domestic">Domestic</button>
+	                <button id="international"
+	                   class="region btn btn-large orange lighten-1 hoverable center-align"
+	                        value="international">International</button>
+            </div>
+<!-- This block display in small devices only, from here down-->
+            <div class="hide-on-med-and-up">
+	                <input type="text" id="start-date" class="datepicker col s5"
+	                    placeholder="Start Date">
+					<div class="col s2"></div>
+	                <input type="text" id="end-date" class="datepicker col s5"
+	                    placeholder="End Date">
+	                <button id="domestic"
+	                    class="region btn btn-large orange lighten-1 hoverable center-align col s5"
+	                    value="domestic">Domestic</button>
+	                <div class="col s2"></div>
+	                <button id="international"
+	                   	class="region btn btn-large orange lighten-1 hoverable center-align col s5"
+	                    value="international">International</button>
+            </div>
+<!-- to here -->
+
+			<div class="col offset-l5 l7 offset-m5 m7 s12">
+				  <div id="navigation" >
+				    <div><a href="#">Home</a></div>
+				    <div><a href="#">About</a></div>
+				    <div><a href="#">Work</a></div>
+				    <div><a href="#">Contact</a></div>
+				    <div><a href="#">Home</a></div>
+				    <div><a href="#">About</a></div>
+				    <div><a href="#">Work</a></div>
+				    <div><a href="#">Contact</a></div>
+				    <div><a href="#">Home</a></div>
+				    <div><a href="#">About</a></div>
+				    <div><a href="#">Work</a></div>
+				    <div><a href="#">Contact</a></div>
+				    <div><a href="#">Home</a></div>
+				    <div><a href="#">About</a></div>
+				    <div><a href="#">Work</a></div>
+				    <div><a href="#">Contact</a></div>
+				    <div><a href="#">Home</a></div>
+				    <div><a href="#">About</a></div>
+				    <div><a href="#">Work</a></div>
+				    <div><a href="#">Contact</a></div>
+				    <div><a href="#">Home</a></div>
+				  </div>
+			</div>
+        </div>
+    </div>
+
+    
+
+    <!-- Location Card Container -->
+    <!-- Wrapper div to get out of Materialize's width -->
 	
-
-	<div id="image"></div>
-
-
-
-
-
-
-
+	
+    <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="assets/javascript/app.js"></script>	
-    <script src="assets/javascript/imgAPI.js"></script>	
+
+    <!-- Helper Scripts -->
+    <script src="assets/javascript/imgAPI.js"></script>
+    <script src="assets/javascript/weather.js"></script>
+    <script src="assets/javascript/hotwireAPI.js"></script>
+    <script src="assets/javascript/cookie.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,105 @@
+
+html, body {
+    height: 100%;
+	overflow-x: hidden;
+    margin-bottom: 0;
+    background-image: url(../images/atl4.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.fixed{
+    position: fixed;
+}
+.row .col.l3{
+}
+.container{
+    width:90%;
+}
+
+#landing-page {
+    margin-top: 100px;
+}
+
+#card-wrapper {
+    background-color: black;
+    margin: 0;
+    width: 100%;
+}
+
+.container-cards {
+    width: 90%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.region {
+    margin: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 180px;
+}
+input:not([type]), 
+input[type=text]:not(.browser-default), 
+input[type=password]:not(.browser-default), 
+input[type=email]:not(.browser-default), 
+input[type=url]:not(.browser-default), 
+input[type=time]:not(.browser-default), 
+input[type=date]:not(.browser-default), 
+input[type=datetime]:not(.browser-default), 
+input[type=datetime-local]:not(.browser-default), 
+input[type=tel]:not(.browser-default), 
+input[type=number]:not(.browser-default), 
+input[type=search]:not(.browser-default), 
+textarea.materialize-textarea {
+    width: 180px;
+}
+
+#table {
+    background-color: #3d3d3d;
+    margin-top: 130px;
+}
+
+td, th {
+    text-align: center;
+    color: #e6be4b;
+}
+
+#navigation{
+    background-color: white;
+    width: 100%;
+    padding-left: 10px;
+    padding-top: 10px;
+    margin-right: 60%;
+}
+
+.btn, .btn-large{
+    padding: 0;
+}
+
+
+
+
+
+@media screen and(max-width: 980px){
+    .region {
+    min-width: 160px;
+    margin: 20px;
+    margin-left: 0;
+    }
+    .btn, .btn-large{
+    padding: 10px;
+}
+
+}
+
+@media screen and(max-width: 840px){
+    .row .col.l3{
+        width: 30%;
+    }
+    .region {
+        width: 130px;
+    }
+    .btn, .btn-large{
+        min-width: 130px;
+    }
+}

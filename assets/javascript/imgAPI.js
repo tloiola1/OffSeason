@@ -25,7 +25,41 @@ function destination(pCity, pCountry){
     });
 }
 
-var city = 'new york';
-var country = 'usa';
 
-destination(city, country);
+
+
+
+
+$("#domestic").on("click", function(){
+
+var $navigation = $('#navigation'),
+    $navigationLinks = $navigation.find('a');
+
+// Set the initial state on navigation links for future animation
+$navigationLinks.css({
+  opacity: 0,
+  "margin-left":"20px"
+});
+
+$navigationLinks.each(function (i, item) {
+  var $item = $(item);
+  
+  // Add animations on each item to the fx queue on the navigation DOM element
+  $.queue($navigation[0], 'fx', function () {
+    var that = this;
+    $item.animate({
+      opacity:1,
+
+      "margin-left":"20px"
+
+    }, {
+      complete: function () {
+        $.dequeue(that);
+      }
+    });
+  });
+});
+
+// Start the navigation queue
+$navigation.dequeue();
+})
