@@ -10,8 +10,8 @@ t = temporary (example: tUUID)
 // ------------------------------------------------
 
 // obtain userID cookie and set up global data object
-var gUserCookie = setUserCookie();
-var gUUID = gUserCookie.uuid;
+// var gUserCookie = setUserCookie();
+// var gUUID = gUserCookie.uuid;
 
 // hide the cards results div
 $("#card-wrapper").hide();
