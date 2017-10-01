@@ -38,7 +38,7 @@ var $navigation = $('#navigation'),
 // Set the initial state on navigation links for future animation
 $navigationLinks.css({
   opacity: 0,
-  "margin-left":"20px"
+  "margin-left":"0"
 });
 
 $navigationLinks.each(function (i, item) {
@@ -50,7 +50,7 @@ $navigationLinks.each(function (i, item) {
     $item.animate({
       opacity:1,
 
-      "margin-left":"20px"
+      "margin-left":"0"
 
     }, {
       complete: function () {
