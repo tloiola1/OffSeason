@@ -15,6 +15,8 @@
     <!-- In-house CSS -->
 	  <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Firebase CDN -->
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
 
     <!-- jQuery 3.2.1 CDN -->
     <script
@@ -29,8 +31,12 @@
 <body>
     <!-- Landing Page Container -->
     <div class="container" id="landing-page">
+
         <!-- Calendar Date Pickers -->
         <div class="row">
+
+            <!-- Query Builder blocks -->
+            <!-- This block display on medium and higher -->
         	<div class="fixed col l3 m3 s12 hide-on-small-only">
 	            <!-- Start Date, offsets row -->
 	                <input type="text" id="start-date" class="datepicker"
@@ -46,7 +52,7 @@
 	                   class="region btn btn-large orange lighten-1 hoverable center-align"
 	                        value="international">International</button>
             </div>
-<!-- This block display in small devices only, from here down-->
+            <!-- This block display in small devices only, from here down-->
             <div class="hide-on-med-and-up">
 	                <input type="text" id="start-date" class="datepicker col s5"
 	                    placeholder="Start Date">
@@ -61,62 +67,88 @@
 	                   	class="region btn btn-large orange lighten-1 hoverable center-align col s5"
 	                    value="international">International</button>
             </div>
-<!-- to here -->
+            <!-- End Query Builder block -->
 
 			<div class="col offset-l5 l7 offset-m5 m7 s12">
-				  <div id="navigation" >
-				    <div><a href="#">Home</a></div>
-				    <div><a href="#">About</a></div>
-				    <div><a href="#">Work</a></div>
-				    <div><a href="#">Contact</a></div>
-				    <div><a href="#">Home</a></div>
-				    <div><a href="#">About</a></div>
-				    <div><a href="#">Work</a></div>
-				    <div><a href="#">Contact</a></div>
-				    <div><a href="#">Home</a></div>
-				    <div><a href="#">About</a></div>
-				    <div><a href="#">Work</a></div>
-				    <div><a href="#">Contact</a></div>
-				    <div><a href="#">Home</a></div>
-				    <div><a href="#">About</a></div>
-				    <div><a href="#">Work</a></div>
-				    <div><a href="#">Contact</a></div>
-				    <div><a href="#">Home</a></div>
-				    <div><a href="#">About</a></div>
-				    <div><a href="#">Work</a></div>
-				    <div><a href="#">Contact</a></div>
-				    <div><a href="#">Home</a></div>
-				  </div>
-			</div>
-        </div>
-    </div>
+                <!-- Card template from Materialize CSS -->
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/images/atl3.jpg">
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title grey-text text-darken-4">Atlanta</span>
+                        <button class="activator btn-floating waves-effect waves-light red right">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <p>$ Price</p>
+                        <p>
+                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">Let's go!!!
+                          <i class="material-icons right">close</i>
+                      </span>
+                        <p>Here is where the fun happens.</p>
+                        <p>Weather API goes here.</p>
+                    </div>
+                </div>
 
-    <!-- Location Card Container -->
-    <!-- Wrapper div to get out of Materialize's width -->
-	<div id="card-wrapper">
-        <!-- Location Card containers -->
-		<div class="container container-cards">
-			<div class="row" id="location-results">
-				<!-- Card template from Materialize CSS -->
-			  <div class="card sticky-action">
-			    <div class="card-image waves-effect waves-block waves-light">
-			      <img class="activator" src="assets/images/atl3.jpg">
-			      </div>
-			    <div class="card-action">
-			      <span class="card-title grey-text text-darken-4">Atlanta</span>
-			      <button class="activator btn-floating waves-effect waves-light red right"><i class="material-icons">add</i></button>
-			      <p>$ Price</p>
-			      <p><a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a></p>
-			    </div>
-			    <div class="card-reveal">
-			      <span class="card-title grey-text text-darken-4">Let's go!!!	<i class="material-icons right">close</i></span>
-			      <p>Here is where the fun happens.</p>
-			      <p>Weather API goes here.</p>
-			    </div>
-			  </div>
-		    </div>
-		</div>
-	</div>
+                <!-- Card template from Materialize CSS -->
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/images/atl3.jpg">
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title grey-text text-darken-4">Atlanta</span>
+                        <button class="activator btn-floating waves-effect waves-light red right">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <p>$ Price</p>
+                        <p>
+                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">Let's go!!!
+                          <i class="material-icons right">close</i>
+                      </span>
+                        <p>Here is where the fun happens.</p>
+                        <p>Weather API goes here.</p>
+                    </div>
+                </div>
+
+                <!-- Card template from Materialize CSS -->
+                <div class="card sticky-action">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/images/atl3.jpg">
+                    </div>
+                    <div class="card-action">
+                        <span class="card-title grey-text text-darken-4">Atlanta</span>
+                        <button class="activator btn-floating waves-effect waves-light red right">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <p>$ Price</p>
+                        <p>
+                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
+                        </p>
+                    </div>
+                    <div class="card-reveal">
+                      <span class="card-title grey-text text-darken-4">Let's go!!!
+                          <i class="material-icons right">close</i>
+                      </span>
+                        <p>Here is where the fun happens.</p>
+                        <p>Weather API goes here.</p>
+                    </div>
+                </div>
+
+            <!-- End Column Section -->
+			</div>
+
+        <!-- End Row -->
+        </div>
+    <!-- End Container -->
+    </div>
 
     <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -126,6 +158,7 @@
     <script src="assets/javascript/weather.js"></script>
     <script src="assets/javascript/hotwireAPI.js"></script>
     <script src="assets/javascript/cookie.js"></script>
+    <script src="assets/javascript/site.js"></script>
 
 </body>
 </html>
