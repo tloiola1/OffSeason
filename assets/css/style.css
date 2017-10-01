@@ -8,6 +8,7 @@ html, body {
 
 .fixed{
     position: fixed;
+    z-index: 2;
 }
 
 .container{
@@ -23,18 +24,22 @@ html, body {
     width: 180px;
 }
 
-input:not([type]), 
-input[type=text]:not(.browser-default), 
-input[type=password]:not(.browser-default), 
-input[type=email]:not(.browser-default), 
-input[type=url]:not(.browser-default), 
-input[type=time]:not(.browser-default), 
-input[type=date]:not(.browser-default), 
-input[type=datetime]:not(.browser-default), 
-input[type=datetime-local]:not(.browser-default), 
-input[type=tel]:not(.browser-default), 
-input[type=number]:not(.browser-default), 
-input[type=search]:not(.browser-default), 
+.card {
+    z-index: 1;
+}
+
+input:not([type]),
+input[type=text]:not(.browser-default),
+input[type=password]:not(.browser-default),
+input[type=email]:not(.browser-default),
+input[type=url]:not(.browser-default),
+input[type=time]:not(.browser-default),
+input[type=date]:not(.browser-default),
+input[type=datetime]:not(.browser-default),
+input[type=datetime-local]:not(.browser-default),
+input[type=tel]:not(.browser-default),
+input[type=number]:not(.browser-default),
+input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
     width: 180px;
 }
