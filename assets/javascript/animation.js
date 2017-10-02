@@ -1,5 +1,5 @@
 
-var animation1 = setInterval(hideBrand, 500);
+var animation1 = setInterval(hideBrand, 2000);
 
 function hideBrand() {
   $(document).ready(function(){
