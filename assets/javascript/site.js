@@ -10,8 +10,8 @@ t = temporary (example: tUUID)
 // ------------------------------------------------
 
 // obtain userID cookie and set up global data object
-var gUserCookie = setUserCookie();
-var gUUID = gUserCookie.uuid;
+// var gUserCookie = setUserCookie();
+// var gUUID = gUserCookie.uuid;
 
 // hide the cards results div
 $("#card-wrapper").hide();
@@ -31,12 +31,6 @@ $('#domestic').on('click', function (event) {
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
     hotwireAPI(startDate, endDate, regionPicked);
-
-    // show the cards results div
-    // scroll slowly to show the div
-    $("#card-wrapper").show();
-    $('html, body').animate({
-        scrollTop: $('#card-wrapper').offset().top}, 'slow');
 });
 
 // on-click function for the International button
@@ -51,12 +45,6 @@ $('#international').on('click', function (event) {
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
     hotwireAPI(startDate, endDate, regionPicked);
-
-    // show the cards results div
-    // scroll slowly to show the div
-    $("#card-wrapper").show();
-    $('html, body').animate({
-        scrollTop: $('#card-wrapper').offset().top}, 'slow');
 });
 
 $('.datepicker').pickadate({
