@@ -16,8 +16,6 @@ Returns: none
 function hotwireAPI (pStart, pEnd, pRegion) {
     var startDate = convertDateHotwire(pStart);
     var endDate = convertDateHotwire(pEnd);
-    startDate = '10/15/2016';
-    endDate = '10/30/2016';
     var apiKey = 'krhcyf9u4tptfayz7zq26r4k';
 
     // 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
@@ -47,9 +45,11 @@ Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
 function convertDateHotwire(pDate) {
-    // create the arrays, split at the hyphen (-)
-    var dateArray = pDate.split('-');
-    return dateArray[1]+'/'+dateArray[2]+'/'+dateArray[0]
+    var rightNow = moment();
+    var targetDate = moment(pDate).format('MM/DD/YYYY');
+
+    console.log(rightNow);
+    console.log(targetDate);
 }
 
 /*
