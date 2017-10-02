@@ -5,8 +5,8 @@ var endDate = '';
 $(document).on('click', '#submit-button', hotwireApi);
 $(document).on('click', '#submit-button', parseHotwire);
 
-startDate = $('#start-date').val();
-endDate = $('#end-date').val();
+startDate = $('#start').val();
+endDate = $('#end').val();
 
 function hotwireAPI () {
     var hotwireURL = 'http://api.hotwire.com/v1/tripstarter/hotel?apikey=krhcyf9u4tptfayz7zq26r4k&&startdate=' + startDate + '&enddate=' + endDate +
@@ -20,5 +20,7 @@ function init (response) {
 }
 
 function parseHotwire (){
+
+var obj = JSON.parse(response)
 
 }
