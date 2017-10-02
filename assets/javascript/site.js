@@ -14,7 +14,7 @@ t = temporary (example: tUUID)
 // var gUUID = gUserCookie.uuid;
 
 // hide the cards results div
-$("#card-wrapper").hide();
+// $("#card-wrapper").hide();
 
 // on-click function for the Domestic button
 $('#domestic').on('click', function (event) {
