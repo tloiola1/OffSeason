@@ -5,7 +5,6 @@ p = parameter
 t = temporary (example: tUUID)
  */
 
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCsjGYYpplHoLB2Je-ZusAXR_5_yWMWdDk",
@@ -86,15 +85,5 @@ Parameters: pCookie (the userID cookie), pData (JSON object of data)
 Returns: none
  */
 function updateUserData (pUUID, pData) {
-    gDatabase.ref().child(`users/${pUUID}`).update(pData);
+    gDatabase.ref().child('users/' + pUUID).update(pData);
 }
-
-// ------------------------------------------------
-//                  ON PAGE LOAD
-// ------------------------------------------------
-
-// obtain userID cookie and set up global data object
-var gUserCookie = setUserCookie();
-var gUUID = gUserCookie.uuid;
-
-
