@@ -63,6 +63,15 @@ function parseHotwire (pResponse, pRegion) {
     console.log(tLocationsArray);
     console.log(tLocationsArray[0]);
     console.log(tLocationsArray[0]['DestinationCity']);
+    
+    // This line send the city name to destination image to get image to show on browser. Tarciso.
+    destinationImage(tLocationsArray[0]['DestinationCity']);
+
+    // getting the weather
+    cityWeather(tLocationsArray[0]['DestinationCity']);
+
+    //append city destination to browser
+    $(".card-title").html(tLocationsArray[0]['DestinationCity'])
 
     var tCleanedData = {
         blank: 'blank object for testing'
