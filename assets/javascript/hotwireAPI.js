@@ -18,7 +18,6 @@ function hotwireAPI (pStart, pEnd, pRegion) {
     var endDate = convertDateHotwire(pEnd);
     var apiKey = 'krhcyf9u4tptfayz7zq26r4k';
 
-    // 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
     var hotwireURL = 'https://gtproxy2.herokuapp.com/api/hotwire/v1/tripstarter/hotel?format=JSON'
         +'&apikey='+ apiKey
         +'&startdate='+ startDate
