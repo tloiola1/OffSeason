@@ -1,27 +1,33 @@
 
 html, body {
     height: 100%;
-	overflow-x: hidden;
+    overflow-x: hidden;
     margin-bottom: 0;
-    background: fixed no-repeat url(../images/atl4.jpg);
+    background-image: url(../images/atl4.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
+.hideMeAtLoad{
+    display: none;
+}
 .fixed{
     position: fixed;
-    z-index: 2;
 }
-
 .container{
-    width: 90%;
+    width:90%;
 }
 
 #landing-page {
     margin-top: 100px;
 }
 
-.region {
-    margin: 20px 0;
-    width: 180px;
+.card{
+    width: 100%;
+    margin-right: 0px;
+    width: 100%;
+    float: left;
+    transition: transform 0.9s;
 }
 
 #result-cards {
@@ -31,56 +37,65 @@ html, body {
 .card {
     z-index: 1;
     margin-top: 11.25px;
+    height: 150px;
 }
 
-input:not([type]),
-input[type=text]:not(.browser-default),
-input[type=password]:not(.browser-default),
-input[type=email]:not(.browser-default),
-input[type=url]:not(.browser-default),
-input[type=time]:not(.browser-default),
-input[type=date]:not(.browser-default),
-input[type=datetime]:not(.browser-default),
-input[type=datetime-local]:not(.browser-default),
-input[type=tel]:not(.browser-default),
-input[type=number]:not(.browser-default),
-input[type=search]:not(.browser-default),
-textarea.materialize-textarea {
+.card .card-action {
+    background-color: inherit;
+    border-top: 1px solid rgba(160,160,160,0.2);
+    margin-bottom: 0;
+}
+.card-action{
+    width: 100%;
+}
+.container-cards {
+    width: 96%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+p{
+    margin: 0;
+}
+.region {
+    margin: 20px;
+    margin-left: 0;
+    margin-right: 0;
     width: 180px;
 }
 
-#table {
-    background-color: #3d3d3d;
-    margin-top: 130px;
+/* cards animation*/
+#result-cards .is-moved {
+  transform: translateX(1300px);
 }
-
-td, th {
-    text-align: center;
-    color: #e6be4b;
+/*--------------------------------*/
+/*On load animation*/
+.anime{
+    margin-top:150px;
 }
-
-#navigation{
-    background-color: white;
-    width: 100%;
-    padding-left: 10px;
-    padding-top: 10px;
-    margin-right: 60%;
+.brand{
+    text-shadow: 5px 2px 10px black;
+    padding-bottom: 0px;
+    font-size: 100px;
+    font-weight: bolder;
 }
-
-.btn, .btn-large{
-    padding: 0;
+.small{
+    font-size: 30px;
 }
+/*--------------------------------*/
 
-/* Media Queries for changes */
+
+/*Media Queries for small devices*/
 @media screen and(max-width: 980px){
     .region {
     min-width: 160px;
-    margin: 20px 20px 20px 0;
+    margin: 20px;
+    margin-left: 0;
     }
-
     .btn, .btn-large{
     padding: 10px;
-    }
+}
+
 }
 
 @media screen and(max-width: 840px){

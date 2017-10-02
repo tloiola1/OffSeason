@@ -1,14 +1,19 @@
 
+// AIzaSyC7PDKxOpzFQ5HWPGkKQBrFaIllhgACkmw
+// https://maps.googleapis.com/maps/api/place/photo?parameters
 
-function destination(pCity, pCountry){
-	console.log(pCity);
+function destinationImage(pCity){ //, pCountry
+	// console.log(pCity);
+  var pCountry = "usa";
 
-  var key = "6588765-767f2672757f4bf26b7229992";
+  // var key = "6588765-767f2672757f4bf26b7229992";
 
-  var queryURL = "https://pixabay.com/api/?key=6588765-767f2672757f4bf26b7229992&q="+ pCity+"+"+pCountry +"&image_type=photo";
-
+  // var queryURL = "https://pixabay.com/api/?key=6588765-767f2672757f4bf26b7229992&q="+ pCity +"+"+ pCountry +"&image_type=photo";//+pCountry +
+var queryURL = "https://maps.googleapis.com/maps/api/place/json?location=atlanta&maxwidth=5"+
+  "&photoreference=atlanta"+
+  "&key=AIzaSyAQzWTq3aMdAEHpUdJhk_e0cRqDJaTbO1w"
     $.ajax({
-      //URL Is Sending The Request 
+      //URL Is Sending The Request w
       url: queryURL,
       //Method Is Getting The Response
       method: "GET",
@@ -17,49 +22,15 @@ function destination(pCity, pCountry){
 
       console.log(response);
 
-      var img = $("<img>");
+      // var img = $("<img>");
+      // img.addClass("activator cityImg");
+      // img.attr("value", pCity);
 
-      img.attr("src", response.hits[Math.floor(Math.random()*20)].webformatURL);
-      $("#image").html(img);
+      // img.attr("src", response.hits[Math.floor(Math.random()*20)].webformatURL);
+      // $(".card-image").html(img);
 
     });
 }
 
-
-
-
-
-
-$("#domestic").on("click", function(){
-
-var $navigation = $('#navigation'),
-    $navigationLinks = $navigation.find('a');
-
-// Set the initial state on navigation links for future animation
-$navigationLinks.css({
-  opacity: 0,
-  "margin-left":"20px"
-});
-
-$navigationLinks.each(function (i, item) {
-  var $item = $(item);
-  
-  // Add animations on each item to the fx queue on the navigation DOM element
-  $.queue($navigation[0], 'fx', function () {
-    var that = this;
-    $item.animate({
-      opacity:1,
-
-      "margin-left":"20px"
-
-    }, {
-      complete: function () {
-        $.dequeue(that);
-      }
-    });
-  });
-});
-
-// Start the navigation queue
-$navigation.dequeue();
-})
+// var city = "atlanta";
+// var region = "us";
