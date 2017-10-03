@@ -39,6 +39,21 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         });
 }
 
+
+// This are dummy variable for testing date to the past
+var travelDate = moment("04/12/2020", "MM/DD/YYYY");
+var today = moment().format("MM/DD/YYYY");
+// Create years difference between future date and today's date
+dateDiff = travelDate.diff(today, 'years');
+console.log("Years difference is... " + dateDiff);
+// Add one year to date difference. This will be use to subtract in next step
+dateDiffPlus = dateDiff + 1;
+console.log("Years plus one year: " + dateDiffPlus);
+// Subtract dateDiff + 1 year from travelDate to get one year old date
+pastDate = moment(travelDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+console.log("This is the past: " + pastDate);
+
+
 /*
 Function to convert the date from date input to the required MM/DD/YYYY format
 
