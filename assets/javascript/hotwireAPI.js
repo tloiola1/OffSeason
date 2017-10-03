@@ -37,9 +37,10 @@ function hotwireAPI (pStart, pEnd, pRegion) {
             var tLocationsArray = response['Result'];
             var locationsString = JSON.stringify(tLocationsArray);
             console.log(locationsString);
-            var cities = tLocationsArray[4]['DestinationCity'];
+            var hwResults = JSON.parse('{"DestinationCity": ""}');
+            var cities = locationsString[4]['DestinationCity'];
             var country = tLocationsArray[4]['DestinationCountryCode'];
-            console.log(cities);
+            console.log(hwResults);
             console.log(country);
              console.log(tLocationsArray);
                console.log(tLocationsArray[0]);
