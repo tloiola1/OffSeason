@@ -12,6 +12,8 @@ Function to make AJAX call to Hotwire API
 Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion (domestic vs international
 Returns: none
  */
+var hwresults = '';
+
 function hotwireAPI (pStart, pEnd, pRegion) {
     var convertedDates = convertDateHotwire(pStart, pEnd);
     var startDate = convertedDates[0];
@@ -30,9 +32,19 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         url: hotwireURL,
         method: 'GET'
     }).done(
+
         function (response) {
-            console.log(response);
-            // var tData = parseHotwire(response, pRegion);
+            var tLocationsArray = response['Result'];
+            var locationsString = JSON.stringify(tLocationsArray);
+            console.log(locationsString);
+            var cities = tLocationsArray[4]['DestinationCity'];
+            var country = tLocationsArray[4]['DestinationCountryCode'];
+            console.log(cities);
+            console.log(country);
+             console.log(tLocationsArray);
+               console.log(tLocationsArray[0]);
+             console.log(tLocationsArray[0]['DestinationCity']);
+
             buildCards('dummy data');
             moveAnimation();
         });
@@ -72,27 +84,32 @@ Function to parse the received response from the Hotwire API
 Parameters: pResponse (JSON response), pRegion (domestic vs international)
 Returns: JSON Object that is contains only what we need and is easier to navigate
  */
-function parseHotwire (pResponse, pRegion) {
-    var tLocationsArray = pResponse['Result'];
-    console.log(tLocationsArray);
-    console.log(tLocationsArray[0]);
-    console.log(tLocationsArray[0]['DestinationCity']);
 
-    // This line send the city name to destination image to get image to show on browser. Tarciso.
-    destinationImage(tLocationsArray[0]['DestinationCity']);
 
-    // getting the weather
-    cityWeather(tLocationsArray[0]['DestinationCity']);
 
-    //append city destination to browser
-    $(".card-title").html(tLocationsArray[0]['DestinationCity'])
+// function parseHotwire (pResponse, pRegion) {
+//     var tLocationsArray = pResponse['Result'];
+//     console.log(tLocationsArray);
+//     console.log(tLocationsArray[0]);
+//     console.log(tLocationsArray[0]['DestinationCity']);
+//
+//     // This line send the city name to destination image to get image to show on browser. Tarciso.
+//     destinationImage(tLocationsArray[0]['DestinationCity']);
+//
+//     // getting the weather
+//     cityWeather(tLocationsArray[0]['DestinationCity']);
+//
+//     //append city destination to browser
+//     $(".card-title").html(tLocationsArray[0]['DestinationCity'])
+//
+//     var tCleanedData = {
+//         blank: 'blank object for testing'
+//     };
+//
+//     return tCleanedData;
+// }
 
-    var tCleanedData = {
-        blank: 'blank object for testing'
-    };
 
-    return tCleanedData;
-}
 
 /*
 Build the cards and append them to the #result-cards
