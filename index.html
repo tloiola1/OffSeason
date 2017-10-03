@@ -27,6 +27,7 @@
 
 </head>
 <body>
+<div class="hideMeAtLoad">
     <!-- Landing Page Container -->
     <div class="container" id="landing-page">
 
@@ -43,25 +44,28 @@
 	                <input type="text" id="end-date" class="datepicker"
 	                       placeholder="End Date">
 	            <!-- National vs Domestic -->
-	                <button onclick="moveAnimation()" id="domestic"
+	                <button id="domestic"
 	                   class="region btn btn-large orange lighten-1 hoverable center-align"
 	                        value="domestic">Domestic</button>
-	                <button onclick="moveAnimation()" id="international"
+	                <button id="international"
 	                   class="region btn btn-large orange lighten-1 hoverable center-align"
 	                        value="international">International</button>
             </div>
             <!-- This block display in small devices only, from here down-->
             <div class="hide-on-med-and-up">
+                <!-- Start Date -->
 	                <input type="text" id="start-date" class="datepicker col s5"
 	                    placeholder="Start Date">
 					        <div class="col s2"></div>
+                <!-- End Date -->
 	                <input type="text" id="end-date" class="datepicker col s5"
 	                    placeholder="End Date">
-	                <button onclick="moveAnimation()" id="domestic"
+                <!-- National vs Domestic -->
+	                <button id="domestic"
 	                    class="region btn btn-large orange lighten-1 hoverable center-align col s5"
 	                    value="domestic">Domestic</button>
 	                <div class="col s2"></div>
-	                <button onclick="moveAnimation()" id="international"
+	                <button id="international"
 	                   	class="region btn btn-large orange lighten-1 hoverable center-align col s5"
 	                    value="international">International</button>
             </div>
@@ -69,85 +73,15 @@
 
             <!-- Card Holder Div -->
 			<div class="col offset-l5 l7 offset-m5 m7 s12 result-cards" id="result-cards">
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action is-moved relative">
-                    <div class="card-image waves-effect waves-block waves-light">
-                         <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4"></span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p class="weather"></p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action is-moved">
-                    <div class="card-image waves-effect waves-block waves-light">
-                         <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4"></span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p class="weather"></p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action is-moved">
-                    <div class="card-image waves-effect waves-block waves-light">
-                         <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4"></span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p class="weather"></p>
-                    </div>
-                </div>
-
-            <!-- End Column Section -->
+                <!-- Dynamically add Cards here -->
 			</div>
 
-        <!-- End Row -->
-        </div>
-    <!-- End Container -->
-    </div>
+        </div><!-- End Row -->
+    </div><!-- End Container -->
+</div><!-- End onLoad wrapper -->
+
+    <div class="anime"><h1 class="brand orange-text lighten-1 center-align">Off Season<br><small class="small"><em>Where the F%$#^@# Should I Go?</em></small></h1></div>
+
 
     <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>

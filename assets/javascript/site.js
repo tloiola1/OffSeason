@@ -25,8 +25,8 @@ $('#domestic').on('click', function (event) {
     var endDate = $('#end-date').val();
     var regionPicked = 'domestic';
 
-    console.log(startDate);
-    console.log(endDate);
+    // clear out old results
+    $('#result-cards').empty();
 
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
@@ -41,6 +41,9 @@ $('#international').on('click', function (event) {
     var startDate = $('#start-date').val();
     var endDate = $('#end-date').val();
     var regionPicked = 'international';
+
+    // clear out old results
+    $('#result-cards').empty();
 
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
