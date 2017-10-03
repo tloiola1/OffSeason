@@ -1,3 +1,4 @@
+
 /*
 Variable Naming Notes:
 g = global (example: gDatabase)
@@ -13,6 +14,10 @@ Function to make AJAX call to Hotwire API
 Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion (domestic vs international
 Returns: none
  */
+
+var destinationCardImage = "";
+
+
 function hotwireAPI (pStart, pEnd, pRegion) {
     var convertedDates = convertDateHotwire(pStart, pEnd);
     var startDate = convertedDates[0];
@@ -33,7 +38,7 @@ function hotwireAPI (pStart, pEnd, pRegion) {
     }).done(
         function (response) {
             console.log(response);
-            // var tData = parseHotwire(response, pRegion);
+            var tData = parseHotwire(response, pRegion);
             buildCards('dummy data');
             moveAnimation();
         });
@@ -82,8 +87,8 @@ function parseHotwire (pResponse, pRegion) {
     console.log(tLocationsArray[0]['DestinationCity']);
     
     // This line send the city name to destination image to get image to show on browser. Tarciso.
-    destinationImage(tLocationsArray[0]['DestinationCity']);
-
+    destinationCardImage = destinationImage(tLocationsArray[0]['DestinationCity']);
+    console.log(hotwireAPI.destinationCardImage + "Aqui");
     // getting the weather
     cityWeather(tLocationsArray[0]['DestinationCity']);
 
@@ -115,7 +120,7 @@ function buildCards(pData) {
         // Build the Card Image Section
         var cardImgImg = $('<img>')
             .addClass('activator')
-            .attr('src', 'assets/images/atl1.jpg');
+            .attr('src', destinationCardImage);
         // append the Image Div then append it all to the new Card
         cardImageDiv.append(cardImgImg);
         newCard.append(cardImageDiv);
