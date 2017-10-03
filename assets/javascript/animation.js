@@ -1,3 +1,13 @@
+setInterval(hideBrand, 1000);
+
+function hideBrand() {
+    $(document).ready(function(){
+        $(".anime").fadeOut("slow", function(){
+            $(".hideMeAtLoad").fadeIn();
+        });
+    });
+}
+
 // this function is called when button is clicked by user to display cards
 function  moveAnimation(){
     var items = document.querySelectorAll('.result-cards .card');

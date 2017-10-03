@@ -6,6 +6,26 @@ html, body {
     background: fixed no-repeat url(../images/atl4.jpg);
 }
 
+.hideMeAtLoad{
+    display: none;
+}
+
+/*--------------------------------*/
+/*On load animation*/
+.anime{
+    margin-top:150px;
+}
+.brand{
+    text-shadow: 5px 2px 10px black;
+    padding-bottom: 0px;
+    font-size: 100px;
+    font-weight: bolder;
+}
+.small{
+    font-size: 30px;
+}
+/*--------------------------------*/
+
 .fixed {
     position: fixed;
     z-index: 2;
