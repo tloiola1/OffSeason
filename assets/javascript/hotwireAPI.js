@@ -76,13 +76,14 @@ function convertDateHotwire(pStartDate, pEndDate) {
     var today = moment().format("MM/DD/YYYY");
 
     // Create years difference between future date and today's date
-    // Add one year to date difference. This will be use to subtract in next step
     var dateDiff = endDate.diff(today, 'years');
+
+    // Add one year to date difference. This will be use to subtract in next step
     var dateDiffPlus = dateDiff + 1;
 
     // Subtract dateDiff + 1 year from travelDate to get one year old date
-    pastDate1 = moment(startDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
-    pastDate2 = moment(endDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+    var pastDate1 = moment(startDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+    var pastDate2 = moment(endDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
 
     // return date array
     return [pastDate1, pastDate2];
