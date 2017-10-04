@@ -39,6 +39,7 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         });
 }
 
+
 /*
 Function to convert the date from date input to the required MM/DD/YYYY format
 
@@ -46,27 +47,29 @@ Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
 function convertDateHotwire(pStartDate, pEndDate) {
-    var rightNow = moment();
-    var convertedStart = moment(pStartDate, 'DD MMMM, YYYY');
-    var convertedEnd = moment(pEndDate, 'DD MMMM, YYYY');
+    var startDate = moment(pStartDate, "DD MMMM, YYYY");
+    var endDate = moment(pEndDate, "DD MMMM, YYYY");
+    var today = moment().format("MM/DD/YYYY");
 
-    // take Start Date to the past
-    while (rightNow < convertedStart) {
-        convertedStart.subtract(1, 'year');
-    }
+    // Create years difference between future date and today's date
+    dateDiff = startDate.diff(today, 'years');
+    dateDiff = endDate.diff(today, 'years');
+    console.log("Years difference is... " + dateDiff);
 
-    // take End Date to the past
-    while (rightNow < convertedEnd) {
-        convertedEnd.subtract(1, 'year');
-    }
+    // Add one year to date difference. This will be use to subtract in next step
+    dateDiffPlus = dateDiff + 1;
+    console.log("Years plus one year: " + dateDiffPlus);
 
-    // make sure Start Date is before End Date
-    while (convertedStart > convertedEnd) {
-        convertedStart.subtract(1, 'year');
-    }
+    // Subtract dateDiff + 1 year from travelDate to get one year old date
+    pastDate1 = moment(startDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+    pastDate2 = moment(endDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+
+    console.log("This is the startDate: " + pastDate1);
+    console.log("This is the endDate: " + pastDate2);
 
     // return date array
-    return [convertedStart.format('MM/DD/YYYY'), convertedEnd.format('MM/DD/YYYY')];
+    return [pastDate1, pastDate2];
+
 }
 
 /*
