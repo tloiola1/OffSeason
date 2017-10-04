@@ -12,7 +12,6 @@ Function to make AJAX call to Hotwire API
 Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion (domestic vs international
 Returns: none
  */
-var hwresults = '';
 
 function hotwireAPI (pStart, pEnd, pRegion) {
     var convertedDates = convertDateHotwire(pStart, pEnd);
@@ -32,24 +31,41 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         url: hotwireURL,
         method: 'GET'
     }).done(
-
         function (response) {
-            var tLocationsArray = response['Result'];
-            var locationsString = JSON.stringify(tLocationsArray);
-            console.log(locationsString);
-            var hwResults = JSON.parse('{"DestinationCity": ""}');
-            var cities = locationsString[4]['DestinationCity'];
-            var country = tLocationsArray[4]['DestinationCountryCode'];
-            console.log(hwResults);
-            console.log(country);
-             console.log(tLocationsArray);
-               console.log(tLocationsArray[0]);
-             console.log(tLocationsArray[0]['DestinationCity']);
 
-            buildCards('dummy data');
+            var tLocationsArray = response['Result'];
+
+            if (pRegion === 'international') {
+                for (var i = 0; i < tLocationsArray.length; i++) {
+                    var location = tLocationsArray[i];
+                    location.DestinationCountryCode
+                    if (location.DestinationCountryCode === 'US') {
+                        tLocationsArray.splice(i, 1);
+                    }
+                }
+            }
+
+            else {
+
+                for (var i = 0; i < tLocationsArray.length; i++) {
+                    var location = tLocationsArray[i];
+                    location.DestinationCountryCode
+                    if (location.DestinationCountryCode !== 'US') {
+                        tLocationsArray.splice(i, 1);
+                    }
+
+                }
+            }
+
+
+            // tLocationArray = [{Object}, {Object}, {Object}]
+            cityWeather(tLocationsArray);
+
+            buildCards(tLocationsArray);
             moveAnimation();
-        });
+        })
 }
+
 
 /*
 Function to convert the date from date input to the required MM/DD/YYYY format
@@ -116,8 +132,9 @@ Returns: JSON Object that is contains only what we need and is easier to navigat
 Build the cards and append them to the #result-cards
  */
 function buildCards(pData) {
+
     // For loop to test multiple cards getting made
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < pData.length; i++) {
         // create the new Card wrapper
         var newCard = $('<div>');
         newCard.addClass('card sticky-action is-moved');
@@ -154,14 +171,49 @@ function buildCards(pData) {
             .append(hotLink);
         newCard.append(cardActionDiv);
 
-        // Build the Card Reveal Section
+      //  Build the Card Reveal Section
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AverageMaxTemp
+            var maxTemp = location.AverageMaxTemp;
+            console.log(maxTemp);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AverageMinTemp
+            var minTemp = location.AverageMinTemp;
+            console.log(minTemp);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AveragePrecipitationInches
+            var precip = location.AveragePrecipitationInches;
+            console.log(precip);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.YearOverYearChange
+            var change = location.YearOverYearChange;
+            console.log(change);
+
+        }
+
         var titleSpan = $('<span>')
             .addClass('card-title grey-text text-darken-4')
             .append('<i class="material-icons right">close</i>');
         var weatherTitle = $('<p>Weather Forcast</p>');
         var weatherDiv = $('<div>')
             .addClass('weather')
-            .text('THIS IS WHERE THE WEATHER WILL GO');
+            .append($('<div>').text(maxTemp))
+            .append($('<div>').text(minTemp))
+            .append($('<div>').text(precip))
+            .append($('<div>').text('Year over year price change' + change));
         // append it all to the RevealDiv and then to the new Card
         cardRevealDiv
             .append(titleSpan)
