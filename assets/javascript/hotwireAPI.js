@@ -14,10 +14,6 @@ Function to make AJAX call to Hotwire API
 Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion (domestic vs international
 Returns: none
  */
-
-var destinationCardImage = "";
-
-
 function hotwireAPI (pStart, pEnd, pRegion) {
     var convertedDates = convertDateHotwire(pStart, pEnd);
     var startDate = convertedDates[0];
@@ -87,8 +83,13 @@ function parseHotwire (pResponse, pRegion) {
     console.log(tLocationsArray[0]['DestinationCity']);
     
     // This line send the city name to destination image to get image to show on browser. Tarciso.
-    destinationCardImage = destinationImage(tLocationsArray[0]['DestinationCity']);
-    console.log(hotwireAPI.destinationCardImage + "Aqui");
+    imgAPI(tLocationsArray[0]['DestinationCity']).then(function(results) {
+        console.log(results);
+        cardImage = results.hits[0].webformatURL;
+        console.log('THIS IScardIMAGE  ' + cardImage);
+        tLocationsArray[0]['cardImage'] =  cardImage;
+        console.log('THIS IS WHAT WE WANT   ' + tLocationsArray[0]['cardImage']);
+    })
     // getting the weather
     cityWeather(tLocationsArray[0]['DestinationCity']);
 
@@ -120,7 +121,7 @@ function buildCards(pData) {
         // Build the Card Image Section
         var cardImgImg = $('<img>')
             .addClass('activator')
-            .attr('src', destinationCardImage);
+            .attr('src', cardImage);
         // append the Image Div then append it all to the new Card
         cardImageDiv.append(cardImgImg);
         newCard.append(cardImageDiv);
