@@ -58,7 +58,6 @@ function hotwireAPI (pStart, pEnd, pRegion) {
 
 
             // tLocationArray = [{Object}, {Object}, {Object}]
-            cityWeather(tLocationsArray);
             var tData = parseHotwire(response, pRegion);
             buildCards(tLocationsArray);
             moveAnimation();
@@ -100,27 +99,26 @@ function parseHotwire (pResponse, pRegion) {
     console.log(tLocationsArray);
     console.log(tLocationsArray[0]);
     console.log(tLocationsArray[0]['DestinationCity']);
-    
+
     // This line send the city name to destination image to get image to show on browser. Tarciso.
-    imgAPI(tLocationsArray[0]['DestinationCity']).then(function(results) {
+    imgAPI(tLocationsArray[0]['DestinationCity']).then(function (results) {
         console.log(results);
-        cardImage = results.hits[0].webformatURL;
+        var cardImage = results.hits[0].webformatURL;
         console.log('THIS IScardIMAGE  ' + cardImage);
-        tLocationsArray[0]['cardImage'] =  cardImage;
+        tLocationsArray[0]['cardImage'] = cardImage;
         console.log('THIS IS WHAT WE WANT   ' + tLocationsArray[0]['cardImage']);
-    })
-    // getting the weather
-    cityWeather(tLocationsArray[0]['DestinationCity']);
+    });
 
     //append city destination to browser
     $(".card-title").html(tLocationsArray[0]['DestinationCity'])
 
-/*
-Build the cards and append them to the #result-cards
- */
+}
+    /*
+    Build the cards and append them to the #result-cards
+     */
 function buildCards(pData) {
-    
-  // For loop to test multiple cards getting made
+
+    // For loop to test multiple cards getting made
     for (var i = 0; i < pData.length; i++) {
         // create the new Card wrapper
         var newCard = $('<div>');
@@ -134,7 +132,7 @@ function buildCards(pData) {
         // Build the Card Image Section
         var cardImgImg = $('<img>')
             .addClass('activator')
-            .attr('src', cardImage);
+            .attr('src', '');
         // append the Image Div then append it all to the new Card
         cardImageDiv.append(cardImgImg);
         newCard.append(cardImageDiv);
@@ -158,7 +156,7 @@ function buildCards(pData) {
             .append(hotLink);
         newCard.append(cardActionDiv);
 
-      //  Build the Card Reveal Section
+        //  Build the Card Reveal Section
         for (var i = 0; i < pData.length; i++) {
             var location = pData[i];
             location.AverageMaxTemp
