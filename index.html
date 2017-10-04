@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +27,7 @@
 
 </head>
 <body>
+<div class="hideMeAtLoad">
     <!-- Landing Page Container -->
     <div class="container" id="landing-page">
 
@@ -54,11 +53,14 @@
             </div>
             <!-- This block display in small devices only, from here down-->
             <div class="hide-on-med-and-up">
+                <!-- Start Date -->
 	                <input type="text" id="start-date" class="datepicker col s5"
 	                    placeholder="Start Date">
 					        <div class="col s2"></div>
+                <!-- End Date -->
 	                <input type="text" id="end-date" class="datepicker col s5"
 	                    placeholder="End Date">
+                <!-- National vs Domestic -->
 	                <button id="domestic"
 	                    class="region btn btn-large orange lighten-1 hoverable center-align col s5"
 	                    value="domestic">Domestic</button>
@@ -70,86 +72,16 @@
             <!-- End Query Builder block -->
 
             <!-- Card Holder Div -->
-			<div class="col offset-l5 l7 offset-m5 m7 s12" id="result-cards">
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-            <!-- End Column Section -->
+			<div class="col offset-l5 l7 offset-m5 m7 s12 result-cards" id="result-cards">
+                <!-- Dynamically add Cards here -->
 			</div>
 
-        <!-- End Row -->
-        </div>
-    <!-- End Container -->
-    </div>
+        </div><!-- End Row -->
+    </div><!-- End Container -->
+</div><!-- End onLoad wrapper -->
+
+    <div class="anime"><h1 class="brand orange-text lighten-1 center-align">Off Season<br><small class="small"><em>Where the F%$#^@# Should I Go?</em></small></h1></div>
+
 
     <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -160,7 +92,7 @@
     <script src="assets/javascript/hotwireAPI.js"></script>
     <script src="assets/javascript/cookie.js"></script>
     <script src="assets/javascript/site.js"></script>
-    <script src="assets/javascript/destination.js"></script>
+    <script src="assets/javascript/animation.js"></script>
 
 </body>
 </html>

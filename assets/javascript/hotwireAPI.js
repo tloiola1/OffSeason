@@ -32,8 +32,7 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         method: 'GET'
     }).done(
         function (response) {
-
-            var tLocationsArray = response['Result'];
+          var tLocationsArray = response['Result'];
 
             if (pRegion === 'international') {
                 for (var i = 0; i < tLocationsArray.length; i++) {
@@ -53,17 +52,16 @@ function hotwireAPI (pStart, pEnd, pRegion) {
                     if (location.DestinationCountryCode !== 'US') {
                         tLocationsArray.splice(i, 1);
                     }
-
                 }
             }
 
 
             // tLocationArray = [{Object}, {Object}, {Object}]
             cityWeather(tLocationsArray);
-
+            parseHotwire();
             buildCards(tLocationsArray);
             moveAnimation();
-        })
+        });
 }
 
 
@@ -73,27 +71,21 @@ Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
 function convertDateHotwire(pStartDate, pEndDate) {
-    var rightNow = moment();
-    var convertedStart = moment(pStartDate, 'DD MMMM, YYYY');
-    var convertedEnd = moment(pEndDate, 'DD MMMM, YYYY');
+    var startDate = moment(pStartDate, "DD MMMM, YYYY");
+    var endDate = moment(pEndDate, "DD MMMM, YYYY");
+    var today = moment().format("MM/DD/YYYY");
 
-    // take Start Date to the past
-    while (rightNow < convertedStart) {
-        convertedStart.subtract(1, 'year');
-    }
+    // Create years difference between future date and today's date
+    // Add one year to date difference. This will be use to subtract in next step
+    var dateDiff = endDate.diff(today, 'years');
+    var dateDiffPlus = dateDiff + 1;
 
-    // take End Date to the past
-    while (rightNow < convertedEnd) {
-        convertedEnd.subtract(1, 'year');
-    }
-
-    // make sure Start Date is before End Date
-    while (convertedStart > convertedEnd) {
-        convertedStart.subtract(1, 'year');
-    }
+    // Subtract dateDiff + 1 year from travelDate to get one year old date
+    pastDate1 = moment(startDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
+    pastDate2 = moment(endDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
 
     // return date array
-    return [convertedStart.format('MM/DD/YYYY'), convertedEnd.format('MM/DD/YYYY')];
+    return [pastDate1, pastDate2];
 }
 
 /*
@@ -101,39 +93,27 @@ Function to parse the received response from the Hotwire API
 Parameters: pResponse (JSON response), pRegion (domestic vs international)
 Returns: JSON Object that is contains only what we need and is easier to navigate
  */
+function parseHotwire (pResponse, pRegion) {
+    var tLocationsArray = pResponse['Result'];
+    console.log(tLocationsArray);
+    console.log(tLocationsArray[0]);
+    console.log(tLocationsArray[0]['DestinationCity']);
+    
+    // This line send the city name to destination image to get image to show on browser. Tarciso.
+    destinationImage(tLocationsArray[0]['DestinationCity']);
 
+    // getting the weather
+    cityWeather(tLocationsArray[0]['DestinationCity']);
 
-
-// function parseHotwire (pResponse, pRegion) {
-//     var tLocationsArray = pResponse['Result'];
-//     console.log(tLocationsArray);
-//     console.log(tLocationsArray[0]);
-//     console.log(tLocationsArray[0]['DestinationCity']);
-//
-//     // This line send the city name to destination image to get image to show on browser. Tarciso.
-//     destinationImage(tLocationsArray[0]['DestinationCity']);
-//
-//     // getting the weather
-//     cityWeather(tLocationsArray[0]['DestinationCity']);
-//
-//     //append city destination to browser
-//     $(".card-title").html(tLocationsArray[0]['DestinationCity'])
-//
-//     var tCleanedData = {
-//         blank: 'blank object for testing'
-//     };
-//
-//     return tCleanedData;
-// }
-
-
+    //append city destination to browser
+    $(".card-title").html(tLocationsArray[0]['DestinationCity'])
 
 /*
 Build the cards and append them to the #result-cards
  */
 function buildCards(pData) {
-
-    // For loop to test multiple cards getting made
+    
+  // For loop to test multiple cards getting made
     for (var i = 0; i < pData.length; i++) {
         // create the new Card wrapper
         var newCard = $('<div>');
@@ -214,14 +194,13 @@ function buildCards(pData) {
             .append($('<div>').text(minTemp))
             .append($('<div>').text(precip))
             .append($('<div>').text('Year over year price change' + change));
+
         // append it all to the RevealDiv and then to the new Card
         cardRevealDiv
             .append(titleSpan)
             .append(weatherTitle)
             .append(weatherDiv);
         newCard.append(cardRevealDiv);
-
-        console.log(newCard);
 
         // finally add the new Card to the DOM by appending it to the Results Div
         $('#result-cards').append(newCard);
