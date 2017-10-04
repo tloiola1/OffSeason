@@ -9,10 +9,10 @@ t = temporary (example: tUUID)
 
 /*
 Function to make AJAX call to Hotwire API
-
 Parameters: pStart (start date MM/DD/YYYY), pEnd (end date MM/DD/YYYY), pRegion (domestic vs international
 Returns: none
  */
+
 function hotwireAPI (pStart, pEnd, pRegion) {
     var convertedDates = convertDateHotwire(pStart, pEnd);
     var startDate = convertedDates[0];
@@ -32,9 +32,34 @@ function hotwireAPI (pStart, pEnd, pRegion) {
         method: 'GET'
     }).done(
         function (response) {
-            console.log(response);
-            // var tData = parseHotwire(response, pRegion);
-            buildCards('dummy data');
+          var tLocationsArray = response['Result'];
+
+            if (pRegion === 'international') {
+                for (var i = 0; i < tLocationsArray.length; i++) {
+                    var location = tLocationsArray[i];
+                    location.DestinationCountryCode
+                    if (location.DestinationCountryCode === 'US') {
+                        tLocationsArray.splice(i, 1);
+                    }
+                }
+            }
+
+            else {
+
+                for (var i = 0; i < tLocationsArray.length; i++) {
+                    var location = tLocationsArray[i];
+                    location.DestinationCountryCode
+                    if (location.DestinationCountryCode !== 'US') {
+                        tLocationsArray.splice(i, 1);
+                    }
+                }
+            }
+
+
+            // tLocationArray = [{Object}, {Object}, {Object}]
+            cityWeather(tLocationsArray);
+            parseHotwire();
+            buildCards(tLocationsArray);
             moveAnimation();
         });
 }
@@ -42,7 +67,6 @@ function hotwireAPI (pStart, pEnd, pRegion) {
 
 /*
 Function to convert the date from date input to the required MM/DD/YYYY format
-
 Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
@@ -52,29 +76,20 @@ function convertDateHotwire(pStartDate, pEndDate) {
     var today = moment().format("MM/DD/YYYY");
 
     // Create years difference between future date and today's date
-    dateDiff = startDate.diff(today, 'years');
-    dateDiff = endDate.diff(today, 'years');
-    console.log("Years difference is... " + dateDiff);
-
     // Add one year to date difference. This will be use to subtract in next step
-    dateDiffPlus = dateDiff + 1;
-    console.log("Years plus one year: " + dateDiffPlus);
+    var dateDiff = endDate.diff(today, 'years');
+    var dateDiffPlus = dateDiff + 1;
 
     // Subtract dateDiff + 1 year from travelDate to get one year old date
     pastDate1 = moment(startDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
     pastDate2 = moment(endDate).subtract(dateDiffPlus, 'years').calendar("MM/DD/YYYY");
 
-    console.log("This is the startDate: " + pastDate1);
-    console.log("This is the endDate: " + pastDate2);
-
     // return date array
     return [pastDate1, pastDate2];
-
 }
 
 /*
 Function to parse the received response from the Hotwire API
-
 Parameters: pResponse (JSON response), pRegion (domestic vs international)
 Returns: JSON Object that is contains only what we need and is easier to navigate
  */
@@ -93,19 +108,13 @@ function parseHotwire (pResponse, pRegion) {
     //append city destination to browser
     $(".card-title").html(tLocationsArray[0]['DestinationCity'])
 
-    var tCleanedData = {
-        blank: 'blank object for testing'
-    };
-
-    return tCleanedData;
-}
-
 /*
 Build the cards and append them to the #result-cards
  */
 function buildCards(pData) {
-    // For loop to test multiple cards getting made
-    for (var i = 0; i < 7; i++) {
+    
+  // For loop to test multiple cards getting made
+    for (var i = 0; i < pData.length; i++) {
         // create the new Card wrapper
         var newCard = $('<div>');
         newCard.addClass('card sticky-action is-moved');
@@ -142,22 +151,56 @@ function buildCards(pData) {
             .append(hotLink);
         newCard.append(cardActionDiv);
 
-        // Build the Card Reveal Section
+      //  Build the Card Reveal Section
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AverageMaxTemp
+            var maxTemp = location.AverageMaxTemp;
+            console.log(maxTemp);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AverageMinTemp
+            var minTemp = location.AverageMinTemp;
+            console.log(minTemp);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.AveragePrecipitationInches
+            var precip = location.AveragePrecipitationInches;
+            console.log(precip);
+
+        }
+
+        for (var i = 0; i < pData.length; i++) {
+            var location = pData[i];
+            location.YearOverYearChange
+            var change = location.YearOverYearChange;
+            console.log(change);
+
+        }
+
         var titleSpan = $('<span>')
             .addClass('card-title grey-text text-darken-4')
             .append('<i class="material-icons right">close</i>');
         var weatherTitle = $('<p>Weather Forcast</p>');
         var weatherDiv = $('<div>')
             .addClass('weather')
-            .text('THIS IS WHERE THE WEATHER WILL GO');
+            .append($('<div>').text(maxTemp))
+            .append($('<div>').text(minTemp))
+            .append($('<div>').text(precip))
+            .append($('<div>').text('Year over year price change' + change));
+
         // append it all to the RevealDiv and then to the new Card
         cardRevealDiv
             .append(titleSpan)
             .append(weatherTitle)
             .append(weatherDiv);
         newCard.append(cardRevealDiv);
-
-        console.log(newCard);
 
         // finally add the new Card to the DOM by appending it to the Results Div
         $('#result-cards').append(newCard);
