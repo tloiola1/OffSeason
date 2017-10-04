@@ -1,3 +1,4 @@
+
 /*
 Variable Naming Notes:
 g = global (example: gDatabase)
@@ -58,7 +59,7 @@ function hotwireAPI (pStart, pEnd, pRegion) {
 
             // tLocationArray = [{Object}, {Object}, {Object}]
             cityWeather(tLocationsArray);
-            parseHotwire();
+            var tData = parseHotwire(response, pRegion);
             buildCards(tLocationsArray);
             moveAnimation();
         });
@@ -101,8 +102,13 @@ function parseHotwire (pResponse, pRegion) {
     console.log(tLocationsArray[0]['DestinationCity']);
     
     // This line send the city name to destination image to get image to show on browser. Tarciso.
-    destinationImage(tLocationsArray[0]['DestinationCity']);
-
+    imgAPI(tLocationsArray[0]['DestinationCity']).then(function(results) {
+        console.log(results);
+        cardImage = results.hits[0].webformatURL;
+        console.log('THIS IScardIMAGE  ' + cardImage);
+        tLocationsArray[0]['cardImage'] =  cardImage;
+        console.log('THIS IS WHAT WE WANT   ' + tLocationsArray[0]['cardImage']);
+    })
     // getting the weather
     cityWeather(tLocationsArray[0]['DestinationCity']);
 
@@ -128,7 +134,7 @@ function buildCards(pData) {
         // Build the Card Image Section
         var cardImgImg = $('<img>')
             .addClass('activator')
-            .attr('src', 'assets/images/atl1.jpg');
+            .attr('src', cardImage);
         // append the Image Div then append it all to the new Card
         cardImageDiv.append(cardImgImg);
         newCard.append(cardImageDiv);
