@@ -1,4 +1,3 @@
-///|
 /*
 Variable Naming Notes:
 g = global (example: gDatabase)
