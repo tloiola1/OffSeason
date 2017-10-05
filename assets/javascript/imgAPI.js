@@ -1,4 +1,10 @@
+/*
+Function to call and get the images for each location object.
+Adds the imageURL to the object keys
 
+Paramters: response array with Objects inside
+Returns:
+ */
 function callImageAPI (response) {
     console.log('starting callImageAPI');
     console.log('using below response:');
@@ -7,6 +13,7 @@ function callImageAPI (response) {
     // define API Key and empty promise array
     var imgApiKey = "6588765-767f2672757f4bf26b7229992";
     var imageStack = [];
+    var completedLocations;
 
     // loop through passed response
     for (var l = 0; l < response.length; l++) {
@@ -34,14 +41,15 @@ function callImageAPI (response) {
             console.log(imageStack);
             for (var k = 0; k < imageStack.length; k++) {
                 var target = imageStack[k].responseJSON;
-                console.log('target below:');
-                console.log(target);
-                console.log(target.hits[0].webformatURL);
                 response[k]['imageURL'] = target.hits[0].webformatURL;
-                console.log(response[k])
             }
             console.log('the promises loop is done, new complete response below');
             console.log(response);
+
+            // call the card builder from cardBuilder.js
+            console.log('Building cards!');
+            buildCards(response);
+            moveAnimation();
     });
 }
 
