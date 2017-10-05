@@ -19,8 +19,6 @@ firebase.initializeApp(config);
 // create global database variable
 var gDatabase = firebase.database();
 
-
-
 /*
 Generates UUID based on the current Date / performance clock
 Allows for unique user entry into Firebase

@@ -15,7 +15,7 @@ var gUUID = gUserCookie.uuid;
 
 // jQuery datepicker with past dates disable functionality
 $(document).ready(function() {
-    $('#start-date').datepicker({
+    $('.start-date').datepicker({
         showAnim: 'drop',
         minDate: 0,
         maxDate: "+11M",
@@ -24,7 +24,7 @@ $(document).ready(function() {
             $('#end-date').datepicker("option", "minDate",selectedDate);
         }
     });
-    $('#end-date').datepicker({
+    $('.end-date').datepicker({
         showAnim: 'drop',
         minDate: 0,
         maxDate: "+11M",

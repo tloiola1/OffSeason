@@ -35,10 +35,26 @@ function callImageAPI (response) {
             // assign to the original objects as imageURL
             for (var k = 0; k < imageStack.length; k++) {
                 var target = imageStack[k].responseJSON;
+
+                // check for hits length to handle limited or no results
                 if (target.hits.length > 0) {
-                    var randImg = Math.floor((Math.random() * 5));
+                    // create max random number based on length
+                    // can't exceed the highest array index
+                    var maxRand = 1;
+                    if (target.hits.length > 5) {
+                        maxRand = 5;
+                    }
+                    else {
+                        maxRand = target.hits.length;
+                    }
+
+                    // create the random index number for the images
+                    var randImg = Math.floor((Math.random() * maxRand));
+
+                    // set the imageURL
                     response[k]['imageURL'] = target.hits[randImg].webformatURL;
                 }
+                // if length is 0 use default image
                 else {
                     response[k]['imageURL'] = 'assets/images/atl4.jpg';
                 }
