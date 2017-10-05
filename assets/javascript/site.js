@@ -10,27 +10,56 @@ t = temporary (example: tUUID)
 // ------------------------------------------------
 
 // obtain userID cookie and set up global data object
-// var gUserCookie = setUserCookie();
-// var gUUID = gUserCookie.uuid;
+var gUserCookie = setUserCookie();
+var gUUID = gUserCookie.uuid;
 
-// hide the cards results div
-// $("#card-wrapper").hide();
+gDatabase.ref().child('users/' + gUUID).on('value', function(snapshot) {
+    var lastTime = moment(snapshot.val().lastVisit);
+    var cleanTime = moment(lastTime).format('MMMM DD, YYYY HH:mm');
+    $('#last-visit').text('Last Visit: ' + cleanTime);
+});
+
+// jQuery datepicker with past dates disable functionality
+$(document).ready(function() {
+    $('#start-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2,
+        onClose: function(selectedDate){
+            $('#end-date').datepicker("option", "minDate",selectedDate);
+        }
+    });
+    $('#end-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2
+    });
+});
 
 // on-click function for the Domestic button
 $('#domestic').on('click', function (event) {
     event.preventDefault();
 
     // pull the values
-    var startDate = $('#start-date').val();
-    var endDate = $('#end-date').val();
+    var userStart = $('#start-date').val();
+    var userEnd = $('#end-date').val();
     var regionPicked = 'domestic';
+
+    // convert the dates using convertDateHotwire from hotwireAPI.js
+    var convertedDates = convertDateHotwire(userStart, userEnd);
+    var startDate = convertedDates[0];
+    var endDate = convertedDates[1];
 
     // clear out old results
     $('#result-cards').empty();
 
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
-    hotwireAPI(startDate, endDate, regionPicked);
+    callHotwireAPI(startDate, endDate)
+        .then(response => parseHotwire(response, regionPicked))
+        .then(response => callImageAPI(response));
 });
 
 // on-click function for the International button
@@ -38,23 +67,21 @@ $('#international').on('click', function (event) {
     event.preventDefault();
 
     // pull the values
-    var startDate = $('#start-date').val();
-    var endDate = $('#end-date').val();
+    var userStart = $('#start-date').val();
+    var userEnd = $('#end-date').val();
     var regionPicked = 'international';
+
+    // convert the dates using convertDateHotwire from hotwireAPI.js
+    var convertedDates = convertDateHotwire(userStart, userEnd);
+    var startDate = convertedDates[0];
+    var endDate = convertedDates[1];
 
     // clear out old results
     $('#result-cards').empty();
 
     // summon hotwireAPI from hotwireAPI.js
     // pass the start, end, and region
-    hotwireAPI(startDate, endDate, regionPicked);
-});
-
-$('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15,
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    closeOnSelect: true
+    callHotwireAPI(startDate, endDate)
+        .then(response => parseHotwire(response, regionPicked))
+        .then(response => callImageAPI(response));
 });
