@@ -26,10 +26,16 @@ html, body {
 }
 /*--------------------------------*/
 
-.fixed {
+#query-div {
     position: fixed;
     z-index: 2;
 }
+
+#start-date,
+#end-date {
+    color: white;
+}
+
 .container {
     width:90%;
 }
@@ -77,26 +83,16 @@ p{
 }
 
 /*Media Queries for small devices*/
-@media screen and(max-width: 980px){
-    .region {
-    min-width: 160px;
-    margin: 20px;
-    margin-left: 0;
+@media only screen and (max-width: 600px) {
+    #query-div {
+        position: static;
+        z-index: 2;
     }
-    .btn, .btn-large{
-    padding: 10px;
 }
 
-}
-
-@media screen and(max-width: 840px){
-    .row .col.l3{
-        width: 30%;
-    }
+@media only screen and (max-width: 405px){
     .region {
-        width: 130px;
-    }
-    .btn, .btn-large{
-        min-width: 130px;
+        width: 160px;
+        padding: 0;
     }
 }
