@@ -13,6 +13,12 @@ t = temporary (example: tUUID)
 var gUserCookie = setUserCookie();
 var gUUID = gUserCookie.uuid;
 
+gDatabase.ref().child('users/' + gUUID).on('value', function(snapshot) {
+    var lastTime = moment(snapshot.val().lastVisit);
+    var cleanTime = moment(lastTime).format('MMMM DD, YYYY HH:mm');
+    $('#last-visit').text('Last Visit: ' + cleanTime);
+});
+
 // jQuery datepicker with past dates disable functionality
 $(document).ready(function() {
     $('#start-date').datepicker({
