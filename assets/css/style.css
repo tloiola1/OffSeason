@@ -10,6 +10,35 @@ html, body {
     display: none;
 }
 
+input:not([type]), input[type=text]:not(.browser-default), 
+input[type=password]:not(.browser-default), 
+input[type=email]:not(.browser-default), 
+input[type=url]:not(.browser-default), 
+input[type=time]:not(.browser-default), 
+input[type=date]:not(.browser-default), 
+input[type=datetime]:not(.browser-default), 
+input[type=datetime-local]:not(.browser-default), 
+input[type=tel]:not(.browser-default), 
+input[type=number]:not(.browser-default), 
+input[type=search]:not(.browser-default), 
+textarea.materialize-textarea {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 180px;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
 /*--------------------------------*/
 /*On load animation*/
 .anime{
@@ -39,17 +68,19 @@ html, body {
 }
 
 .card {
+    margin-top: 0px;
+    margin-bottom: 5px;
     width: 100%;
     float: left;
     transition: transform 0.9s;
     z-index: 1;
  }
 div .card{
-    padding: 20px;
     background-color: rgba(255,255,255,0.5);
+    padding: 20px;
 }
 .card img {
-    height: 250px;
+    height: 150px;
 }
 
 .card .card-action {
@@ -60,21 +91,23 @@ div .card{
 .card-action {
     width: 100%;
 }
-div.card-reveal{
-    padding:20px;
-}
 
 p{
     margin: 0;
 }
 .region {
-    margin: 20px 0;
     width: 180px;
+    margin: 20px 0;
 }
 
 /* cards animation*/
 #result-cards .is-moved {
   transform: translateX(1300px);
+}
+.recents{
+    position:fixed;
+    bottom:0;
+    width: 180px;
 }
 
 /*Media Queries for small devices*/
