@@ -50,11 +50,11 @@ $('#international').on('click', function (event) {
     hotwireAPI(startDate, endDate, regionPicked);
 });
 
-$('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15,
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    closeOnSelect: true
-});
+// $('.datepicker').pickadate({
+//     selectMonths: true,
+//     selectYears: 15,
+//     today: 'Today',
+//     clear: 'Clear',
+//     close: 'Ok',
+//     closeOnSelect: true,
+// });

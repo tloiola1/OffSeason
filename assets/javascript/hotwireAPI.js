@@ -7,6 +7,25 @@ t = temporary (example: tUUID)
 
 // Sean's API key: p4j4vytm588y332gdt8r79cp
 
+// jQuery datepicker with past dates disable functionality
+$(document).ready(function() {
+    $('#start-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2,
+        onClose: function(selectedDate){
+            $('#end-date').datepicker("option", "minDate",selectedDate);
+        }
+    });
+    $('#end-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2
+    });
+});
+
 /*
 Function to make AJAX call to Hotwire API
 
@@ -47,8 +66,8 @@ Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
 function convertDateHotwire(pStartDate, pEndDate) {
-    var startDate = moment(pStartDate, "DD MMMM, YYYY");
-    var endDate = moment(pEndDate, "DD MMMM, YYYY");
+    var startDate = moment(pStartDate);
+    var endDate = moment(pEndDate);
     var today = moment().format("MM/DD/YYYY");
 
     // Create years difference between future date and today's date
