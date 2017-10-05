@@ -1,9 +1,9 @@
 
 html, body {
     height: 100%;
-    overflow-x: hidden;
     margin-bottom: 0;
-    background: fixed no-repeat url(../images/atl4.jpg);
+    background: fixed no-repeat url(../images/Travel-Wallpaper-Background.png);
+    background-size: cover;
 }
 
 .hideMeAtLoad{
@@ -40,36 +40,32 @@ html, body {
 
 .card {
     width: 100%;
-    margin-right: 0;
     float: left;
     transition: transform 0.9s;
     z-index: 1;
-}
+    border: 15px solid rgba(255,255,255,0.5);
+    background-clip: padding-box;
+ }
 
 .card img {
     height: 250px;
 }
 
 .card .card-action {
-    background-color: inherit;
-    border-top: 1px solid rgba(160,160,160,0.2);
     margin-bottom: 0;
+    background-color: rgb(255,255,255);
 }
 
 .card-action {
     width: 100%;
 }
-.container-cards {
-    width: 96%;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-bottom: 0;
+div.card-reveal{
+    padding:20px;
 }
 
-p {
+p{
     margin: 0;
 }
-
 .region {
     margin: 20px 0;
     width: 180px;

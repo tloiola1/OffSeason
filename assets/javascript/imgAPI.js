@@ -1,36 +1,56 @@
+/*
+Function to call and get the images for each location object.
+Adds the imageURL to the object keys
 
-// AIzaSyC7PDKxOpzFQ5HWPGkKQBrFaIllhgACkmw
-// https://maps.googleapis.com/maps/api/place/photo?parameters
+Parameters: response array with Objects inside
+Returns: nothing
+ */
+function callImageAPI (response) {
 
-function destinationImage(pCity){ //, pCountry
-	// console.log(pCity);
-  var pCountry = "usa";
+    // define API Key and empty promise array
+    var imgApiKey = "6588765-767f2672757f4bf26b7229992";
+    var imageStack = [];
 
-  // var key = "6588765-767f2672757f4bf26b7229992";
+    // loop through passed response
+    for (var l = 0; l < response.length; l++) {
+        // get city name from current response object
+        var tCity = response[l]['DestinationCity'];
+        tCity = removeBad(tCity);
 
-  // var queryURL = "https://pixabay.com/api/?key=6588765-767f2672757f4bf26b7229992&q="+ pCity +"+"+ pCountry +"&image_type=photo";//+pCountry +
-var queryURL = "https://maps.googleapis.com/maps/api/place/json?location=atlanta&maxwidth=5"+
-  "&photoreference=atlanta"+
-  "&key=AIzaSyAQzWTq3aMdAEHpUdJhk_e0cRqDJaTbO1w"
-    $.ajax({
-      //URL Is Sending The Request w
-      url: queryURL,
-      //Method Is Getting The Response
-      method: "GET",
-      //.done Executes When Get The Response From URL
-    }).done(function(response){
+        // build the query URL for the API
+        var queryURL = "https://pixabay.com/api/?key="+ imgApiKey
+            +"&q="+ tCity
+            +"&image_type=photo";
 
-      console.log(response);
+        // add the AJAX call to the call stack
+        imageStack.push(
+            $.ajax({url: queryURL, method: "GET"})
+        );
+    }
 
-      // var img = $("<img>");
-      // img.addClass("activator cityImg");
-      // img.attr("value", pCity);
+    // create a Promise All that waits for all of the calls to get responses
+    Promise.all(imageStack)
+        .then(function() {
+            // once they're all done pulling, loop through the responses
+            // assign to the original objects as imageURL
+            for (var k = 0; k < imageStack.length; k++) {
+                var target = imageStack[k].responseJSON;
+                if (target.hits.length > 0) {
+                    var randImg = Math.floor((Math.random() * 5));
+                    response[k]['imageURL'] = target.hits[randImg].webformatURL;
+                }
+                else {
+                    response[k]['imageURL'] = 'assets/images/atl4.jpg';
+                }
+            }
 
-      // img.attr("src", response.hits[Math.floor(Math.random()*20)].webformatURL);
-      // $(".card-image").html(img);
-
+            // call the card builder from cardBuilder.js
+            buildCards(response);
+            moveAnimation();
     });
 }
 
-// var city = "atlanta";
-// var region = "us";
+// function to clean the input string
+function removeBad (pString) {
+    return pString.replace(/ *\([^)]*\) */g, "");
+}

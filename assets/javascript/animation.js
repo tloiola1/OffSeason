@@ -1,4 +1,4 @@
-setInterval(hideBrand, 1000);
+setInterval(hideBrand, 1500);
 
 function hideBrand() {
     $(document).ready(function(){
@@ -10,7 +10,7 @@ function hideBrand() {
 
 // this function is called when button is clicked by user to display cards
 function  moveAnimation(){
-    var items = document.querySelectorAll('.result-cards .card');
+    var items = document.querySelectorAll('#result-cards .card');
     var isMoved = true;
 
 
