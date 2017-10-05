@@ -13,6 +13,25 @@ t = temporary (example: tUUID)
 var gUserCookie = setUserCookie();
 var gUUID = gUserCookie.uuid;
 
+// jQuery datepicker with past dates disable functionality
+$(document).ready(function() {
+    $('#start-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2,
+        onClose: function(selectedDate){
+            $('#end-date').datepicker("option", "minDate",selectedDate);
+        }
+    });
+    $('#end-date').datepicker({
+        showAnim: 'drop',
+        minDate: 0,
+        maxDate: "+11M",
+        numberOfMonths: 2
+    });
+});
+
 // on-click function for the Domestic button
 $('#domestic').on('click', function (event) {
     event.preventDefault();
@@ -59,14 +78,4 @@ $('#international').on('click', function (event) {
     callHotwireAPI(startDate, endDate)
         .then(response => parseHotwire(response, regionPicked))
         .then(response => callImageAPI(response));
-});
-
-// handle the calendars on the landing page
-$('.datepicker').pickadate({
-    selectMonths: true,
-    selectYears: 15,
-    today: 'Today',
-    clear: 'Clear',
-    close: 'Ok',
-    closeOnSelect: true
 });
