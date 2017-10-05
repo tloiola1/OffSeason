@@ -43,9 +43,9 @@ Parameters: pDate (date string "DD MonthName, YYYY")
 Returns: date string ("MM/DD/YYYY")
  */
 function convertDateHotwire(pStartDate, pEndDate) {
-    var tStartDate = moment(pStartDate, "DD MMMM, YYYY");
-    var tEndDate = moment(pEndDate, "DD MMMM, YYYY");
-    var tToday = moment().format("MM/DD/YYYY");
+    var tStartDate = moment(pStartDate, "MM/DD/YYYY");
+    var tEndDate = moment(pEndDate, "MM/DD/YYYY");
+    var tToday = moment();
 
     // Create years difference between future date and today's date
     var dateDiff = tEndDate.diff(tToday, 'years');
