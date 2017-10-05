@@ -1,4 +1,4 @@
-setInterval(hideBrand, 50);
+setInterval(hideBrand, 1500);
 
 function hideBrand() {
     $(document).ready(function(){
