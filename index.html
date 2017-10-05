@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,26 +22,30 @@
       integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
       crossorigin="anonymous"></script>
 
+    <!-- jQuery UIs for datepicker themes -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+
+
     <!-- Moment JS CDN -->
     <script src="https://momentjs.com/downloads/moment.js"></script>
 
 </head>
 <body>
+<div id="last-visit"></div>
+<div class="hideMeAtLoad">
     <!-- Landing Page Container -->
     <div class="container" id="landing-page">
 
         <!-- Calendar Date Pickers -->
         <div class="row">
 
-            <!-- Query Builder blocks -->
-            <!-- This block display on medium and higher -->
-        	<div class="fixed col l3 m3 s12 hide-on-small-only">
+            <!-- Query Builder block -->
+        	<div class="col l3 m3 s12" id="query-div">
 	            <!-- Start Date, offsets row -->
-	                <input type="text" id="start-date" class="datepicker"
-	                       placeholder="Start Date">
+                    <input type="text" id="start-date" placeholder="Start Date">
 	            <!-- End Date -->
-	                <input type="text" id="end-date" class="datepicker"
-	                       placeholder="End Date">
+                    <input type="text" id="end-date" placeholder="End Date">
 	            <!-- National vs Domestic -->
 	                <button id="domestic"
 	                   class="region btn btn-large orange lighten-1 hoverable center-align"
@@ -52,114 +54,30 @@
 	                   class="region btn btn-large orange lighten-1 hoverable center-align"
 	                        value="international">International</button>
             </div>
-            <!-- This block display in small devices only, from here down-->
-            <div class="hide-on-med-and-up">
-	                <input type="text" id="start-date" class="datepicker col s5"
-	                    placeholder="Start Date">
-					        <div class="col s2"></div>
-	                <input type="text" id="end-date" class="datepicker col s5"
-	                    placeholder="End Date">
-	                <button id="domestic"
-	                    class="region btn btn-large orange lighten-1 hoverable center-align col s5"
-	                    value="domestic">Domestic</button>
-	                <div class="col s2"></div>
-	                <button id="international"
-	                   	class="region btn btn-large orange lighten-1 hoverable center-align col s5"
-	                    value="international">International</button>
-            </div>
             <!-- End Query Builder block -->
 
             <!-- Card Holder Div -->
-			<div class="col offset-l5 l7 offset-m5 m7 s12" id="result-cards">
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-                <!-- Card template from Materialize CSS -->
-                <div class="card sticky-action">
-                    <div class="card-image waves-effect waves-block waves-light">
-                        <img class="activator" src="assets/images/atl3.jpg">
-                    </div>
-                    <div class="card-action">
-                        <span class="card-title grey-text text-darken-4">Atlanta</span>
-                        <button class="activator btn-floating waves-effect waves-light red right">
-                            <i class="material-icons">add</i>
-                        </button>
-                        <p>$ Price</p>
-                        <p>
-                            <a href="https://www.hotwire.com/" target="_blank">Hotwire Link</a>
-                        </p>
-                    </div>
-                    <div class="card-reveal">
-                      <span class="card-title grey-text text-darken-4">Let's go!!!
-                          <i class="material-icons right">close</i>
-                      </span>
-                        <p>Here is where the fun happens.</p>
-                        <p>Weather API goes here.</p>
-                    </div>
-                </div>
-
-            <!-- End Column Section -->
+			<div class="col offset-l5 l7 offset-m5 m7 s12 result-cards" id="result-cards">
+                <!-- Dynamically add Cards here -->
 			</div>
 
-        <!-- End Row -->
-        </div>
-    <!-- End Container -->
-    </div>
+        </div><!-- End Row -->
+    </div><!-- End Container -->
+</div><!-- End onLoad wrapper -->
+
+    <div class="anime"><h1 class="brand orange-text lighten-1 center-align">Off Season<br><small class="small"><em>Where the F%$#^@# Should I Go?</em></small></h1></div>
+
 
     <!-- Materialize CSS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     <!-- Helper Scripts -->
-    <script src="assets/javascript/imgAPI.js"></script>
-    <script src="assets/javascript/weather.js"></script>
-    <script src="assets/javascript/hotwireAPI.js"></script>
     <script src="assets/javascript/cookie.js"></script>
+    <script src="assets/javascript/cardBuilder.js"></script>
+    <script src="assets/javascript/imgAPI.js"></script>
+    <script src="assets/javascript/hotwireAPI.js"></script>
     <script src="assets/javascript/site.js"></script>
+    <script src="assets/javascript/animation.js"></script>
 
 </body>
 </html>

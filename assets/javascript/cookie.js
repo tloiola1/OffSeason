@@ -19,8 +19,6 @@ firebase.initializeApp(config);
 // create global database variable
 var gDatabase = firebase.database();
 
-
-
 /*
 Generates UUID based on the current Date / performance clock
 Allows for unique user entry into Firebase
@@ -46,6 +44,7 @@ function generateUUID () { // Public Domain/MIT
 
 /*
 Function called on page load to either retrieve the cookie or create one
+
 Parameters: none
 Returns: string (the cookie as stringified JSON)
  */
@@ -58,6 +57,7 @@ function setUserCookie () {
     if (document.cookie) {
         // get UUID and update the lastVisit property of the user
         var tUUID = JSON.parse(document.cookie);
+
         updateUserData(tUUID.uuid, {lastVisit: rightNow});
 
         return JSON.parse(document.cookie);
@@ -81,6 +81,7 @@ function setUserCookie () {
 
 /*
 Write to the user's DB entry
+
 Parameters: pCookie (the userID cookie), pData (JSON object of data)
 Returns: none
  */

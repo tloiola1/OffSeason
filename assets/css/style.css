@@ -1,91 +1,106 @@
 
 html, body {
     height: 100%;
-	overflow-x: hidden;
     margin-bottom: 0;
-    background: fixed no-repeat url(../images/atl4.jpg);
+    background: fixed no-repeat url(../images/Travel-Wallpaper-Background.png);
+    background-size: cover;
 }
 
-.fixed{
+.hideMeAtLoad{
+    display: none;
+}
+
+/*--------------------------------*/
+/*On load animation*/
+.anime{
+    margin-top:150px;
+}
+.brand{
+    text-shadow: 5px 2px 10px black;
+    padding-bottom: 0px;
+    font-size: 100px;
+    font-weight: bolder;
+}
+.small{
+    font-size: 30px;
+}
+/*--------------------------------*/
+
+#last-visit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-right: 5px;
+    color: rgba(255,255,255,.5);
+}
+
+#query-div {
     position: fixed;
     z-index: 2;
 }
 
-.container{
-    width: 90%;
+#start-date,
+#end-date {
+    color: white;
+}
+
+.container {
+    width:90%;
 }
 
 #landing-page {
     margin-top: 100px;
 }
 
+.card {
+    width: 100%;
+    float: left;
+    transition: transform 0.9s;
+    z-index: 1;
+    border: 15px solid rgba(255,255,255,0.5);
+    background-clip: padding-box;
+ }
+
+.card img {
+    height: 250px;
+}
+
+.card .card-action {
+    margin-bottom: 0;
+    background-color: rgb(255,255,255);
+}
+
+.card-action {
+    width: 100%;
+}
+div.card-reveal{
+    padding:20px;
+}
+
+p{
+    margin: 0;
+}
 .region {
     margin: 20px 0;
     width: 180px;
 }
 
-.card {
-    z-index: 1;
+/* cards animation*/
+#result-cards .is-moved {
+  transform: translateX(1300px);
 }
 
-input:not([type]),
-input[type=text]:not(.browser-default),
-input[type=password]:not(.browser-default),
-input[type=email]:not(.browser-default),
-input[type=url]:not(.browser-default),
-input[type=time]:not(.browser-default),
-input[type=date]:not(.browser-default),
-input[type=datetime]:not(.browser-default),
-input[type=datetime-local]:not(.browser-default),
-input[type=tel]:not(.browser-default),
-input[type=number]:not(.browser-default),
-input[type=search]:not(.browser-default),
-textarea.materialize-textarea {
-    width: 180px;
+/*Media Queries for small devices*/
+@media only screen and (max-width: 600px) {
+    #query-div {
+        position: static;
+        z-index: 2;
+    }
 }
 
-#table {
-    background-color: #3d3d3d;
-    margin-top: 130px;
-}
-
-td, th {
-    text-align: center;
-    color: #e6be4b;
-}
-
-#navigation{
-    background-color: white;
-    width: 100%;
-    padding-left: 10px;
-    padding-top: 10px;
-    margin-right: 60%;
-}
-
-.btn, .btn-large{
-    padding: 0;
-}
-
-/* Media Queries for changes */
-@media screen and(max-width: 980px){
+@media only screen and (max-width: 405px){
     .region {
-    min-width: 160px;
-    margin: 20px 20px 20px 0;
-    }
-
-    .btn, .btn-large{
-    padding: 10px;
-    }
-}
-
-@media screen and(max-width: 840px){
-    .row .col.l3{
-        width: 30%;
-    }
-    .region {
-        width: 130px;
-    }
-    .btn, .btn-large{
-        min-width: 130px;
+        width: 160px;
+        padding: 0;
     }
 }
