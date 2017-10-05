@@ -30,7 +30,7 @@ var callHotwireAPI = function(pStart, pEnd) {
                 method: 'GET'
             }).done(
                 function (response) {
-                    if (response) { console.log(response); resolve(response); }
+                    if (response) { resolve(response); }
                     else {reject('Hotwire API Failed')}
                 });
         });
@@ -83,13 +83,10 @@ function parseHotwire (response, pRegion) {
             }
             // slice down to 15 results and return
             desiredArray = desiredArray.slice(0,15);
-            console.log('international parsed array:');
-            console.log(desiredArray);
             return desiredArray;
 
         // if the region is domestic, remove all non-US based destinations
         case 'domestic':
-            console.log('you clicked domestic');
             for (var j = 0; j < tLocationsArray.length; j++) {
                 var location = tLocationsArray[j];
                 if (location['DestinationCountryCode'] === 'US') {
@@ -98,13 +95,11 @@ function parseHotwire (response, pRegion) {
             }
             // slice down to 15 results and return
             desiredArray = desiredArray.slice(0,15);
-            console.log('domestic parsed array:');
-            console.log(desiredArray);
             return desiredArray;
 
         // catch all
         default:
-            console.log('invalid muthafucka');
+            console.log('invalid');
             break;
     }
 }

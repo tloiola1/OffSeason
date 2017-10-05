@@ -10,8 +10,8 @@ t = temporary (example: tUUID)
 // ------------------------------------------------
 
 // obtain userID cookie and set up global data object
-// var gUserCookie = setUserCookie();
-// var gUUID = gUserCookie.uuid;
+var gUserCookie = setUserCookie();
+var gUUID = gUserCookie.uuid;
 
 // on-click function for the Domestic button
 $('#domestic').on('click', function (event) {

@@ -57,15 +57,12 @@ function buildCards(pData) {
             .addClass('activator btn-floating waves-effect waves-light red right')
             .append('<i class="material-icons">add</i>');
         var priceText = $('<p>')
-            .text('$' + location.AveragePrice);
-        var hotLink = $('<p>')
-            .append('<a href="https://www.hotwire.com/" target="_blank">LINK VAR</a>');
+            .text('Average Hotel Price: $' + location.AveragePrice + '/night');
         // append all the sections to the ActionDiv then to the new Card
         cardActionDiv
             .append(cityTitle)
             .append(actionButton)
             .append(priceText)
-            .append(hotLink);
         newCard.append(cardActionDiv);
 
         //  Build the Card Reveal Section
@@ -73,17 +70,23 @@ function buildCards(pData) {
         var minTemp = location.AverageMinTemp;
         var precip = location.AveragePrecipitationInches;
         var change = location.YearOverYearChange;
+        var hotLink = $('<p>')
+            .append('<a href="https://www.hotwire.com/" ' +
+                'target="_blank">Book your hotel!</a>');
 
         var titleSpan = $('<span>')
             .addClass('card-title grey-text text-darken-4')
             .append('<i class="material-icons right">close</i>');
-        var weatherTitle = $('<p>Weather Forcast</p>');
+        var weatherTitle = $('<p><strong>Weather Forcast</strong></p>');
         var weatherDiv = $('<div>')
             .addClass('weather')
-            .append($('<div>').text('Max Temp: ' + maxTemp))
-            .append($('<div>').text('Min Temp: ' + minTemp))
-            .append($('<div>').text('Avg Precipitation: ' + precip))
-            .append($('<div>').text('YOY Price Change: ' + change));
+            .append($('<div>').text('Max Temp: ' + maxTemp + ' F'))
+            .append($('<div>').text('Min Temp: ' + minTemp + ' F'))
+            .append($('<div>').text('Avg Precipitation: ' + precip + ' inches'))
+            .append('<br>')
+            .append($('<div>').text('Year-over-Year Price Change: ' + change))
+            .append('<br>')
+            .append(hotLink);
 
         // append it all to the RevealDiv and then to the new Card
         cardRevealDiv

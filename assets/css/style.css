@@ -3,7 +3,7 @@ html, body {
     height: 100%;
     margin-bottom: 0;
     background: fixed no-repeat url(../images/Travel-Wallpaper-Background.png);
-
+    background-size: cover;
 }
 
 .hideMeAtLoad{
