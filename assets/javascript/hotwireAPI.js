@@ -36,25 +36,36 @@ function hotwireAPI (pStart, pEnd, pRegion) {
           var tLocationsArray = response['Result'];
 
             if (pRegion === 'international') {
+
                 for (var i = 0; i < tLocationsArray.length; i++) {
+
                     var location = tLocationsArray[i];
+                    console.log(typeof tLocationsArray[i]);
+                    console.log(typeof pRegion);
+                    console.log(typeof location);
+                    console.log(location.DestinationCountryCode);
                     location.DestinationCountryCode
+
+
                     if (location.DestinationCountryCode === 'US') {
                         tLocationsArray.splice(i, 1);
+                        console.log(tLocationsArray);
+
                     }
                 }
             }
 
             else {
 
-                for (var i = 0; i < tLocationsArray.length; i++) {
-                    var location = tLocationsArray[i];
+                for (var j = 0; j < tLocationsArray.length; j++) {
+                    var location = tLocationsArray[j];
                     location.DestinationCountryCode
                     if (location.DestinationCountryCode !== 'US') {
-                        tLocationsArray.splice(i, 1);
+                        tLocationsArray.splice(j, 1);
                     }
                 }
-            }
+
+}
 
 
             // tLocationArray = [{Object}, {Object}, {Object}]
